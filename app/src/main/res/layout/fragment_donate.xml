@@ -6,17 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".DonateFragment">
 
-    <LinearLayout
+    <Button
+        android:id="@+id/cubabutton"
+        android:textSize="50dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/orphanage_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            tools:listitem="@layout/recycler_view_item" />
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:text="Button" />
 
 </FrameLayout>

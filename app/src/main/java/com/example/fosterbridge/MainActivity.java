@@ -27,7 +27,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 import java.util.HashMap;
 import java.util.Map;
-//test
 
 public class MainActivity extends AppCompatActivity {
 

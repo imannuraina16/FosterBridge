@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DonateMonetary">
+
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/checkOut_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Check out the orphanages needs by clicking on their profile "
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/divider8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.758" />
+
+        <TextView
+            android:id="@+id/orphanage_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="76dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Orphanage Name"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/orphanage_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="4dp"
+            android:text="Orphanage Address"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/orphanage_name" />
+
+        <View
+            android:id="@+id/divider7"
+            android:layout_width="500dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.293" />
+
+        <View
+            android:id="@+id/divider8"
+            android:layout_width="500dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.075" />
+
+        <TextView
+            android:id="@+id/see_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="See profile"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/divider7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.95" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="427dp"
+            android:layout_height="536dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider7"
+            app:layout_constraintVertical_bias="0.0">
+
+            <Button
+                android:id="@+id/btnRm10"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#d0d2da"
+                android:fontFamily="sans-serif-black"
+                android:text="RM10"
+                android:textColor="#4e5364"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.218"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.086" />
+
+            <Button
+                android:id="@+id/btnRm500"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#d0d2da"
+                android:fontFamily="sans-serif-black"
+                android:text="RM500"
+                android:textColor="#4e5364"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnRm1000"
+                app:layout_constraintHorizontal_bias="0.656"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnRm200"
+                app:layout_constraintVertical_bias="0.126" />
+
+            <Button
+                android:id="@+id/btnRm1000"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="68dp"
+                android:backgroundTint="#d0d2da"
+                android:fontFamily="sans-serif-black"
+                android:text="RM1000"
+                android:textColor="#4e5364"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnRm300"
+                app:layout_constraintVertical_bias="0.126" />
+
+            <Button
+                android:id="@+id/btnRm300"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="68dp"
+                android:backgroundTint="#d0d2da"
+                android:fontFamily="sans-serif-black"
+                android:text="RM300"
+                android:textColor="#4e5364"
+                android:textSize="18dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnRm100" />
+
+            <Button
+                android:id="@+id/btnRm200"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="28dp"
+                android:backgroundTint="#d0d2da"
+                android:fontFamily="sans-serif-black"
+                android:text="RM200"
+                android:textColor="#4e5364"
+                android:textSize="18dp"
+                app:layout_constraintEnd_toStartOf="@+id/btnRm300"
+                app:layout_constraintHorizontal_bias="0.656"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnRm50" />
+
+            <Button
+                android:id="@+id/btnRm50"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="28dp"
+                android:backgroundTint="#d0d2da"
+                android:fontFamily="sans-serif-black"
+                android:text="RM50"
+                android:textColor="#4e5364"
+                android:textSize="18dp"
+                app:layout_constraintEnd_toStartOf="@+id/btnRm100"
+                app:layout_constraintHorizontal_bias="0.656"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnRm10" />
+
+            <Button
+                android:id="@+id/btnRm100"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="68dp"
+                android:backgroundTint="#d0d2da"
+                android:fontFamily="sans-serif-black"
+                android:text="RM100"
+                android:textColor="#4e5364"
+                android:textSize="18dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnRm30" />
+
+            <Button
+                android:id="@+id/btnRm30"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#d0d2da"
+                android:fontFamily="sans-serif-black"
+                android:text="RM30"
+                android:textColor="#4e5364"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.303"
+                app:layout_constraintStart_toEndOf="@+id/btnRm10"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.086" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
