@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "962817695869",
+    "project_id": "fosterbridge",
+    "storage_bucket": "fosterbridge.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962817695869:android:96807372dd032624bc5114",
+        "android_client_info": {
+          "package_name": "com.example.fosterbridge"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOoq3HQTZxKuTYg4PgIF1UG8TONoZCw0Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
