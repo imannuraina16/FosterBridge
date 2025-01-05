@@ -40,7 +40,9 @@ public class DonateMonetary extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_donate_monetary, container, false);
-
+        if (getActivity() != null) {
+            ((MainActivity) getActivity()).showUpButton(); // Show up button in HomeFragment
+        }
         TextView nameTextView = view.findViewById(R.id.orphanage_name);
         TextView locationTextView = view.findViewById(R.id.orphanage_address);
 

@@ -56,7 +56,9 @@ public class VolunteeringSignUp extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_volunteering_sign_up, container, false);
-
+        if (getActivity() != null) {
+            ((MainActivity) getActivity()).showUpButton(); // Show up button in HomeFragment
+        }
         // Example: Display event details
         TextView eventNameTextView = view.findViewById(R.id.event_name);
         TextView orphanageNameTextView = view.findViewById(R.id.orphanage_name);

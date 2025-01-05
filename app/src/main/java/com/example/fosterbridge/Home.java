@@ -42,6 +42,9 @@ public class Home extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        if (getActivity() != null) {
+            ((MainActivity) getActivity()).hideUpButton(); // Hide up button in ProfileFragment
+        }
         Button button_contribute = view.findViewById(R.id.button_contribute);
         button_contribute.setOnClickListener(new View.OnClickListener() {
             @Override

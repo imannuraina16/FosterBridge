@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
     TextView title;
-
+    ImageView up_button;
     private FirebaseFirestore db;
 
     @Override
@@ -44,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
         replaceFragment(new Home());
         title = findViewById(R.id.title);
+        up_button = findViewById(R.id.up_button);
+        up_button.setOnClickListener(v -> {
+            getSupportFragmentManager().popBackStack();
+        });
+
 
         binding.bottomNavigationView2.setOnItemSelectedListener(item -> {
 
@@ -74,4 +79,17 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
+    public void hideUpButton() {
+        // Hide up button in specific fragments/screens
+        if (up_button != null) {
+            up_button.setVisibility(View.GONE);  // or View.INVISIBLE
+        }
+    }
+
+    public void showUpButton() {
+        // Show up button in other fragments/screens
+        if (up_button != null) {
+            up_button.setVisibility(View.VISIBLE);
+        }
+    }
 }
