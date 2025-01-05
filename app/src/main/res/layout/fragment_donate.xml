@@ -6,11 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".DonateFragment">
 
-    <Button
-        android:id="@+id/cubabutton"
-        android:textSize="50dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Button" />
-
+        android:layout_height="match_parent" />
 </FrameLayout>

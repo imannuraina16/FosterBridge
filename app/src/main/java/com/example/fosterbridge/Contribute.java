@@ -9,9 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.fosterbridge.DonateFragment;
-import com.example.fosterbridge.VolunteerFragment;
-
 public class Contribute extends Fragment {
 
     @Override

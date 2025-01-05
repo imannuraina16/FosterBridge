@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,12 +22,22 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.Fragment;
-import com.example.fosterbridge.R;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
 
 public class Home extends Fragment{
 
     TextView title;
+    RecyclerView recyclerView3;
+    FirebaseFirestore db;
+    HomeAdapter myAdapter;
+    ArrayList<Orphanage> orphanageArrayList;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -60,7 +71,50 @@ public class Home extends Fragment{
 
             }
         });
+        recyclerView3 = view.findViewById(R.id.recyclerView3);
+        recyclerView3.setHasFixedSize(true);
+        recyclerView3.setLayoutManager(new LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL, false));
+
+        db = FirebaseFirestore.getInstance();
+        orphanageArrayList = new ArrayList<>();
+
+        // Initialize adapter with listener
+        myAdapter = new HomeAdapter(requireContext(), orphanageArrayList, orphanage -> {
+            // Handle button click here
+            goToDonateMonetary(orphanage);
+        });
+
+        recyclerView3.setAdapter(myAdapter);
+
+        dataInitialize();
         return view;
+    }
+
+    private void dataInitialize() {
+        db.collection("orphanage").addSnapshotListener((value, error) -> {
+            if (error != null) {
+                Log.e("Firestore error", error.getMessage());
+                return;
+            }
+            for (DocumentChange dc : value.getDocumentChanges()) {
+                if (dc.getType() == DocumentChange.Type.ADDED) {
+                    orphanageArrayList.add(dc.getDocument().toObject(Orphanage.class));
+                }
+                myAdapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    private void goToDonateMonetary(Orphanage orphanage) {
+        // Create a new instance of the target fragment
+        title = getActivity().findViewById(R.id.title);
+        DonateMonetary donateMonetary = DonateMonetary.newInstance(orphanage.getName(), orphanage.getLocation());
+        // Replace the current fragment with the detail fragment
+        FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_layout, donateMonetary);
+        transaction.addToBackStack(null);
+        title.setText("Donate");
+        transaction.commit();
     }
 
 

@@ -29,11 +29,12 @@
             android:id="@+id/orphanage_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="76dp"
+            android:layout_marginTop="80dp"
             android:fontFamily="sans-serif-black"
             android:text="Orphanage Name"
             android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.223"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,12 +42,16 @@
             android:id="@+id/orphanage_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginBottom="44dp"
             android:text="Orphanage Address"
+            android:layout_marginLeft="12dp"
             android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/divider7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.211"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/orphanage_name" />
+            app:layout_constraintTop_toBottomOf="@+id/orphanage_name"
+            app:layout_constraintVertical_bias="0.307" />
 
         <View
             android:id="@+id/divider7"
@@ -89,6 +94,7 @@
             app:layout_constraintVertical_bias="0.95" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="427dp"
             android:layout_height="536dp"
             android:layout_marginStart="1dp"
@@ -100,6 +106,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider7"
             app:layout_constraintVertical_bias="0.0">
+
+            <Button
+                android:id="@+id/button_donate_now"
+                android:layout_width="156dp"
+                android:layout_height="53dp"
+                android:layout_marginBottom="44dp"
+                android:backgroundTint="#4B84F1"
+                android:fontFamily="sans-serif-black"
+                android:text="DONATE NOW"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/donate_amount" />
 
             <Button
                 android:id="@+id/btnRm10"
@@ -221,6 +240,37 @@
                 app:layout_constraintStart_toEndOf="@+id/btnRm10"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.086" />
+
+            <EditText
+                android:id="@+id/donate_amount"
+                android:layout_width="96dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="364dp"
+                android:ems="10"
+                android:fontFamily="sans-serif-black"
+                android:inputType="text"
+                android:text="0"
+                android:textAlignment="center"
+                android:textSize="26dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.577"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/ringgit"
+                android:layout_width="50dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="58dp"
+                android:fontFamily="sans-serif-black"
+                android:text="RM"
+                android:textSize="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/donate_amount"
+                app:layout_constraintHorizontal_bias="0.922"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnRm500"
+                app:layout_constraintVertical_bias="0.233" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
