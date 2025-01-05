@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Donation_History">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="192dp"
+        android:layout_height="164dp"
+        android:background="@drawable/card_shadow"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.157">
+
+        <TextView
+            android:id="@+id/tvTotalDonation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2mm"
+            android:layout_marginTop="2mm"
+            android:backgroundTint="#9C27B0"
+            android:text="RM 400"
+            android:textColor="#000000"
+            android:textSize="45sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="33dp"
+            android:layout_height="23dp"
+            android:layout_marginLeft="2mm"
+            android:layout_marginTop="12mm"
+            android:contentDescription="Book Icon"
+            android:src="@drawable/ic_book" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="33dp"
+            android:layout_height="23dp"
+            android:layout_marginLeft="2mm"
+            android:layout_marginTop="16mm"
+            android:contentDescription="Foodie Icon"
+            android:src="@drawable/ic_foodie" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="33dp"
+            android:layout_height="23dp"
+            android:layout_marginLeft="2mm"
+            android:layout_marginTop="20mm"
+            android:contentDescription="Heartue Icon"
+            android:src="@drawable/ic_heart" />
+
+        <ProgressBar
+            android:id="@+id/pbBooks"
+            android:layout_width="120dp"
+            android:layout_height="9dp"
+            android:layout_marginLeft="8mm"
+            android:layout_marginTop="13mm"
+            android:layout_weight="1"
+            android:progress="50"
+            android:progressTint="#3F51B5" />
+
+        <ProgressBar
+            android:id="@+id/pbBooks"
+            android:layout_width="120dp"
+            android:layout_height="9dp"
+            android:layout_marginLeft="8mm"
+            android:layout_marginTop="17mm"
+            android:layout_weight="1"
+            android:progress="50"
+            android:progressTint="#3F51B5" />
+
+        <ProgressBar
+            android:id="@+id/pbBooks"
+            android:layout_width="120dp"
+            android:layout_height="9dp"
+            android:layout_marginLeft="8mm"
+            android:layout_marginTop="21mm"
+            android:layout_weight="1"
+            android:progress="50"
+            android:progressTint="#3F51B5" />
+    </androidx.cardview.widget.CardView>
+
+    <ScrollView
+        android:layout_width="350dp"
+        android:layout_height="408dp"
+        android:background="#F7F7F7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.573"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.832"
+        tools:context=".DonationHistoryActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="2mm"
+                android:background="@drawable/rounded_card"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <ImageView
+                    android:layout_width="116dp"
+                    android:layout_height="128dp"
+                    android:contentDescription="Profile Image"
+                    android:src="@drawable/img" />
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="129dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingLeft="8dp">
+
+                    <TextView
+                        android:id="@+id/tvDonationTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1mm"
+                        android:text="School Supplies for Orphanage X"
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvDonationDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="December 5, 2024"
+                        android:textColor="#666666"
+                        android:textSize="12sp" />
+
+                    <ProgressBar
+                        android:id="@+id/pbDonationProgress"
+                        android:layout_width="185dp"
+                        android:layout_height="10dp"
+                        android:layout_marginTop="3mm"
+                        android:progress="60"
+                        android:progressTint="#3F51B5" />
+
+                    <Button
+                        android:id="@+id/btnViewImpact"
+                        android:layout_width="106dp"
+                        android:layout_height="32dp"
+                        android:layout_marginLeft="13mm"
+                        android:backgroundTint="#3F51B5"
+                        android:text="View Impact"
+                        android:textColor="#FFFFFF"
+                        android:textSize="8sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="2mm"
+                android:background="@drawable/rounded_card"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <ImageView
+                    android:layout_width="116dp"
+                    android:layout_height="128dp"
+                    android:contentDescription="Profile Image"
+                    android:src="@drawable/img" />
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="129dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingLeft="8dp">
+
+                    <TextView
+                        android:id="@+id/tvDonationTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1mm"
+                        android:text="School Supplies for Orphanage X"
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvDonationDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="December 5, 2024"
+                        android:textColor="#666666"
+                        android:textSize="12sp" />
+
+                    <ProgressBar
+                        android:id="@+id/pbDonationProgress"
+                        android:layout_width="185dp"
+                        android:layout_height="10dp"
+                        android:layout_marginTop="3mm"
+                        android:progress="60"
+                        android:progressTint="#3F51B5" />
+
+                    <Button
+                        android:id="@+id/btnViewImpact"
+                        android:layout_width="106dp"
+                        android:layout_height="32dp"
+                        android:layout_marginLeft="13mm"
+                        android:backgroundTint="#3F51B5"
+                        android:text="View Impact"
+                        android:textColor="#FFFFFF"
+                        android:textSize="8sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="2mm"
+                android:background="@drawable/rounded_card"
+                android:backgroundTint="#D7D4D4"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <ImageView
+                    android:layout_width="116dp"
+                    android:layout_height="128dp"
+                    android:contentDescription="Profile Image"
+                    android:src="@drawable/img" />
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="129dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingLeft="8dp">
+
+                    <TextView
+                        android:id="@+id/tvDonationTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1mm"
+                        android:text="School Supplies for Orphanage X"
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvDonationDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="December 5, 2024"
+                        android:textColor="#666666"
+                        android:textSize="12sp" />
+
+                    <ProgressBar
+                        android:id="@+id/pbDonationProgress"
+                        android:layout_width="185dp"
+                        android:layout_height="10dp"
+                        android:layout_marginTop="3mm"
+                        android:progress="60"
+                        android:progressTint="#3F51B5" />
+
+                    <Button
+                        android:id="@+id/btnViewImpact"
+                        android:layout_width="106dp"
+                        android:layout_height="32dp"
+                        android:layout_marginLeft="13mm"
+                        android:backgroundTint="#3F51B5"
+                        android:text="View Impact"
+                        android:textColor="#FFFFFF"
+                        android:textSize="8sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+

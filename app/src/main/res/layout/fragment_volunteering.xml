@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Volunteering">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:layout_width="382dp"
+        android:layout_height="529dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.583">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="1mm"><![CDATA[>
+
+            ]]>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/Event1"
+                android:layout_width="match_parent"
+                android:layout_height="157dp"
+                android:layout_margin="1mm"
+                android:background="@drawable/card_shadow"
+                app:cardCornerRadius="10dp">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="137dp"
+                    android:layout_height="match_parent"
+                    android:padding="8dp"
+                    android:src="@drawable/img"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_margin="8dp" />
+
+                <TextView
+                    android:layout_width="55dp"
+                    android:layout_height="23dp"
+                    android:layout_marginLeft="24mm"
+                    android:layout_marginTop="3mm"
+                    android:text="Event-1"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24mm"
+                    android:layout_marginTop="7mm"
+                    android:text="Orphanage\nOrphanage address...\nVolunteering activities...\nDates and times...\nSkills requirements..."
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="45mm"
+                    android:layout_marginTop="18mm"
+                    android:backgroundTint="#F8F7F7"
+                    android:paintFlags="underline"
+                    android:text="Apply"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/Event2"
+                android:layout_width="match_parent"
+                android:layout_height="157dp"
+                android:layout_margin="1mm"
+                android:background="@drawable/card_shadow"
+                app:cardCornerRadius="10dp">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="137dp"
+                    android:layout_height="match_parent"
+                    android:padding="8dp"
+                    android:src="@drawable/img"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_margin="8dp" />
+
+                <TextView
+                    android:layout_width="55dp"
+                    android:layout_height="23dp"
+                    android:layout_marginLeft="24mm"
+                    android:layout_marginTop="3mm"
+                    android:text="Event-2"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24mm"
+                    android:layout_marginTop="7mm"
+                    android:text="Orphanage\nOrphanage address...\nVolunteering activities...\nDates and times...\nSkills requirements..."
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="45mm"
+                    android:layout_marginTop="18mm"
+                    android:backgroundTint="#F8F7F7"
+                    android:paintFlags="underline"
+                    android:text="Apply"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/Event3"
+                android:layout_width="match_parent"
+                android:layout_height="157dp"
+                android:layout_margin="1mm"
+                android:background="@drawable/card_shadow"
+                app:cardCornerRadius="10dp">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="137dp"
+                    android:layout_height="match_parent"
+                    android:padding="8dp"
+                    android:src="@drawable/img"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_margin="8dp" />
+
+                <TextView
+                    android:layout_width="55dp"
+                    android:layout_height="23dp"
+                    android:layout_marginLeft="24mm"
+                    android:layout_marginTop="3mm"
+                    android:text="Event-3"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24mm"
+                    android:layout_marginTop="7mm"
+                    android:text="Orphanage\nOrphanage address...\nVolunteering activities...\nDates and times...\nSkills requirements..."
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="45mm"
+                    android:layout_marginTop="18mm"
+                    android:backgroundTint="#F8F7F7"
+                    android:paintFlags="underline"
+                    android:text="Apply"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/Event4"
+                android:layout_width="361dp"
+                android:layout_height="157dp"
+                android:layout_margin="1mm"
+                android:background="@drawable/card_shadow"
+                app:cardCornerRadius="10dp">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="137dp"
+                    android:layout_height="match_parent"
+                    android:padding="8dp"
+                    android:src="@drawable/img"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_margin="8dp" />
+
+                <TextView
+                    android:layout_width="55dp"
+                    android:layout_height="23dp"
+                    android:layout_marginLeft="24mm"
+                    android:layout_marginTop="3mm"
+                    android:text="Event-4"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24mm"
+                    android:layout_marginTop="7mm"
+                    android:text="Orphanage\nOrphanage address...\nVolunteering activities...\nDates and times...\nSkills requirements..."
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="45mm"
+                    android:layout_marginTop="18mm"
+                    android:backgroundTint="#F8F7F7"
+                    android:paintFlags="underline"
+                    android:text="Apply"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
