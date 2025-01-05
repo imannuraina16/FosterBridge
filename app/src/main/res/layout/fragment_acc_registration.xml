@@ -7,7 +7,7 @@
     tools:context=".AccRegistrationFragment">
 
     <TextView
-        android:id="@+id/usernameTV"
+        android:id="@+id/TVusername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Username *"
@@ -34,7 +34,7 @@
         app:layout_constraintVertical_bias="0.403" />
 
     <EditText
-        android:id="@+id/editTextText3"
+        android:id="@+id/inputPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -50,7 +50,7 @@
         app:layout_constraintVertical_bias="0.572" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/getStartedButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -65,7 +65,7 @@
         app:layout_constraintVertical_bias="0.743" />
 
     <RadioButton
-        android:id="@+id/radioButton"
+        android:id="@+id/donorButton"
         android:layout_width="145dp"
         android:layout_height="38dp"
         android:buttonTint="#00BCD4"
@@ -78,7 +78,7 @@
         app:layout_constraintVertical_bias="0.675" />
 
     <RadioButton
-        android:id="@+id/radioButton2"
+        android:id="@+id/orphanageButton"
         android:layout_width="139dp"
         android:layout_height="40dp"
         android:text="Orphanage"
@@ -149,34 +149,48 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.611" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="166dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="230dp"
-        android:backgroundTint="#9EB8FF"
-        android:text="Register"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        android:background="#9EB8FF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.198" />
+        app:tabIndicatorColor="#FFFFFF"
+        app:tabSelectedTextColor="#FFFFFF"
+        app:tabTextColor="#C1CFFF" />
 
-    <Button
-        android:id="@+id/selectLogin"
-        android:layout_width="166dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="230dp"
-        android:layout_marginEnd="32dp"
-        android:backgroundTint="#C1CFFF"
-        android:text="Login"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.475"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.199" />
+    <!--    <Button-->
+<!--        android:id="@+id/selectRegisterButton"-->
+<!--        android:layout_width="166dp"-->
+<!--        android:layout_height="53dp"-->
+<!--        android:layout_marginStart="40dp"-->
+<!--        android:layout_marginEnd="230dp"-->
+<!--        android:backgroundTint="#9EB8FF"-->
+<!--        android:text="Register"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.198" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/selectLoginButton"-->
+<!--        android:layout_width="166dp"-->
+<!--        android:layout_height="49dp"-->
+<!--        android:layout_marginStart="230dp"-->
+<!--        android:layout_marginEnd="32dp"-->
+<!--        android:backgroundTint="#C1CFFF"-->
+<!--        android:text="Login"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.475"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.199" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

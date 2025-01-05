@@ -7,7 +7,7 @@
     tools:context=".EditProfileDonorFragment">
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/donorProfilePic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@tools:sample/avatars"
@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="0.248" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/TVdonor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="donor"
@@ -30,7 +30,7 @@
         app:layout_constraintVertical_bias="0.443" />
 
     <TextView
-        android:id="@+id/usernameTV"
+        android:id="@+id/TVusername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="username"
@@ -43,7 +43,7 @@
         app:layout_constraintVertical_bias="0.411" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/username1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Username"
@@ -56,7 +56,7 @@
         app:layout_constraintVertical_bias="0.497" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/inputUsername"
         android:layout_width="106dp"
         android:layout_height="39dp"
         android:ems="10"
@@ -71,7 +71,7 @@
         app:layout_constraintVertical_bias="0.497" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/name2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name"
@@ -84,7 +84,7 @@
         app:layout_constraintVertical_bias="0.55" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/age3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Age"
@@ -97,7 +97,7 @@
         app:layout_constraintVertical_bias="0.602" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/gender4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Gender"
@@ -110,7 +110,7 @@
         app:layout_constraintVertical_bias="0.654" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/contactInfo5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Contact Info"
@@ -123,7 +123,7 @@
         app:layout_constraintVertical_bias="0.703" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/email6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Email"
@@ -136,7 +136,7 @@
         app:layout_constraintVertical_bias="0.751" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/password7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Password"
@@ -149,10 +149,10 @@
         app:layout_constraintVertical_bias="0.797" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/dateOfBirth8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Date if Birth"
+        android:text="Date of Birth"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -162,7 +162,7 @@
         app:layout_constraintVertical_bias="0.848" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/inputName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -177,7 +177,7 @@
         app:layout_constraintVertical_bias="0.551" />
 
     <EditText
-        android:id="@+id/editTextText4"
+        android:id="@+id/inputAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -192,7 +192,7 @@
         app:layout_constraintVertical_bias="0.609" />
 
     <EditText
-        android:id="@+id/editTextText5"
+        android:id="@+id/inputGender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -207,7 +207,7 @@
         app:layout_constraintVertical_bias="0.658" />
 
     <EditText
-        android:id="@+id/editTextText6"
+        android:id="@+id/inputContact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -222,7 +222,7 @@
         app:layout_constraintVertical_bias="0.706" />
 
     <EditText
-        android:id="@+id/editTextText7"
+        android:id="@+id/inputEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -237,7 +237,7 @@
         app:layout_constraintVertical_bias="0.758" />
 
     <EditText
-        android:id="@+id/editTextText8"
+        android:id="@+id/inputPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -252,7 +252,7 @@
         app:layout_constraintVertical_bias="0.8" />
 
     <EditText
-        android:id="@+id/editTextText9"
+        android:id="@+id/inputBirthDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"

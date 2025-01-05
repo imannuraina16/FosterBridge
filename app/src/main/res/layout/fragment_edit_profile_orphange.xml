@@ -7,7 +7,7 @@
     tools:context=".EditProfileOrphangeFragment">
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/TVusername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,7 +19,7 @@
         tools:src="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/TVorphanage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="username"
@@ -43,7 +43,7 @@
         app:layout_constraintVertical_bias="0.477" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/username1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Username"
@@ -56,7 +56,7 @@
         app:layout_constraintVertical_bias="0.57" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/name2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name"
@@ -69,7 +69,7 @@
         app:layout_constraintVertical_bias="0.622" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/contactInfo3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Contact Info"
@@ -82,7 +82,7 @@
         app:layout_constraintVertical_bias="0.678" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/address5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Email"
@@ -108,7 +108,7 @@
         app:layout_constraintVertical_bias="0.796" />
 
     <TextView
-        android:id="@+id/textView20"
+        android:id="@+id/inputUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Registration Number"
@@ -121,7 +121,7 @@
         app:layout_constraintVertical_bias="0.848" />
 
     <EditText
-        android:id="@+id/editTextText10"
+        android:id="@+id/inputOrphanageName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -136,7 +136,7 @@
         app:layout_constraintVertical_bias="0.625" />
 
     <EditText
-        android:id="@+id/editTextText11"
+        android:id="@+id/inputContact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -151,7 +151,7 @@
         app:layout_constraintVertical_bias="0.683" />
 
     <EditText
-        android:id="@+id/editTextText13"
+        android:id="@+id/inputEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -166,7 +166,7 @@
         app:layout_constraintVertical_bias="0.74" />
 
     <EditText
-        android:id="@+id/editTextText14"
+        android:id="@+id/inputAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="536dp"
@@ -182,7 +182,7 @@
         app:layout_constraintVertical_bias="0.122" />
 
     <EditText
-        android:id="@+id/editTextText12"
+        android:id="@+id/inputRegisterNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"

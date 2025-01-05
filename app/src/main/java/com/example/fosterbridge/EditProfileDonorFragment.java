@@ -1,64 +1,96 @@
 package com.example.fosterbridge;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.*;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link EditProfileDonorFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class EditProfileDonorFragment extends Fragment {
+    private EditText inputName, inputAge, inputGender, inputContact, inputEmail, inputPassword, inputBirthDate;
+    private Button saveButton;
+    private ImageView donorProfilePic;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public EditProfileDonorFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment EditProfileDonorFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static EditProfileDonorFragment newInstance(String param1, String param2) {
-        EditProfileDonorFragment fragment = new EditProfileDonorFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_edit_profile_donor, container, false);
+
+        // Initialize UI components
+        donorProfilePic = view.findViewById(R.id.donorProfilePic);
+        inputName = view.findViewById(R.id.inputName);
+        inputAge = view.findViewById(R.id.inputAge);
+        inputGender = view.findViewById(R.id.inputGender);
+        inputContact = view.findViewById(R.id.inputContact);
+        inputEmail = view.findViewById(R.id.inputEmail);
+        inputPassword = view.findViewById(R.id.inputPassword);
+        inputBirthDate = view.findViewById(R.id.inputBirthDate);
+        saveButton = view.findViewById(R.id.saveButton);
+
+        // Pre-fill user data (Replace with actual data retrieval logic)
+        preFillUserData();
+
+        // Save button click listener
+        saveButton.setOnClickListener(v -> saveProfileChanges());
+
+        return view;
+    }
+
+    private void preFillUserData() {
+        // Simulate fetching user data (Replace this with actual database/API calls)
+        inputName.setText("admin");
+        inputAge.setText("30 years old");
+        inputGender.setText("Female");
+        inputContact.setText("01X-XXXX XXX");
+        inputEmail.setText("admin@gmail.com");
+        inputPassword.setText("********");
+        inputBirthDate.setText("31 Dec 1993");
+    }
+
+    private void saveProfileChanges() {
+        String name = inputName.getText().toString().trim();
+        String age = inputAge.getText().toString().trim();
+        String gender = inputGender.getText().toString().trim();
+        String contact = inputContact.getText().toString().trim();
+        String email = inputEmail.getText().toString().trim();
+        String password = inputPassword.getText().toString().trim();
+        String birthDate = inputBirthDate.getText().toString().trim();
+
+        // Validate inputs
+        if (TextUtils.isEmpty(name)) {
+            inputName.setError("Name is required!");
+            return;
         }
-    }
+        if (TextUtils.isEmpty(age)) {
+            inputAge.setError("Age is required!");
+            return;
+        }
+        if (TextUtils.isEmpty(gender)) {
+            inputGender.setError("Gender is required!");
+            return;
+        }
+        if (TextUtils.isEmpty(contact)) {
+            inputContact.setError("Contact info is required!");
+            return;
+        }
+        if (TextUtils.isEmpty(email)) {
+            inputEmail.setError("Email is required!");
+            return;
+        }
+        if (TextUtils.isEmpty(password)) {
+            inputPassword.setError("Password is required!");
+            return;
+        }
+        if (TextUtils.isEmpty(birthDate)) {
+            inputBirthDate.setError("Date of Birth is required!");
+            return;
+        }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_profile_donor, container, false);
+        // Simulate saving profile changes (Replace with actual database/API update logic)
+        Toast.makeText(getContext(), "Profile updated successfully!", Toast.LENGTH_SHORT).show();
     }
 }
