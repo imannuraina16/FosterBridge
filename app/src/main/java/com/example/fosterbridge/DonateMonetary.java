@@ -3,6 +3,7 @@ package com.example.fosterbridge;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ public class DonateMonetary extends Fragment {
 
     private String orphanageName;
     private String orphanageLocation;
+
 
     public static DonateMonetary newInstance(String name, String location) {
         DonateMonetary fragment = new DonateMonetary();
@@ -113,10 +115,23 @@ public class DonateMonetary extends Fragment {
         button_donate_now.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Pass the donation amount to the Payment fragment
+                String amount = donation_amount.getText().toString();
 
+                // Create a new Payment fragment and pass the donation amount via a Bundle
+                Payment paymentFragment = new Payment();
+                Bundle args = new Bundle();
+                args.putString("donation_amount", amount);  // Add donation amount to Bundle
+                paymentFragment.setArguments(args);
+
+                // Replace current fragment with the Payment fragment
+                FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.frame_layout, paymentFragment);
+                fragmentTransaction.commit();
             }
         });
 
         return view;
     }
+
 }

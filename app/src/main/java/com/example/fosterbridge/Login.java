@@ -70,11 +70,12 @@ public class Login extends Fragment {
             enterPassword.setError("Password is required");
             return;
         }
-        checkLoginInCollection("users", username, password);
-        checkLoginInCollection("orphanage", username, password);
+
+        // Start checking in 'users' collection first
+        checkLoginInCollection("users", username, password, true);
     }
 
-    private void checkLoginInCollection(String collection, String username, String password) {
+    private void checkLoginInCollection(String collection, String username, String password, boolean checkOtherCollection) {
         db.collection(collection)
                 .document(username)
                 .get()
@@ -92,18 +93,15 @@ public class Login extends Fragment {
                                     Intent intent = new Intent(getActivity(), MainActivity.class);
                                     startActivity(intent);
                                     getActivity().finish();
-                                    // For example, you could navigate to the home screen or dashboard
                                 } else {
                                     // Password mismatch
                                     Toast.makeText(requireContext(), "Incorrect password", Toast.LENGTH_SHORT).show();
                                 }
                             } else {
-                                // User not found in this collection, check the other collection
-                                if (collection.equals("users")) {
-                                    // Try orphanages collection
-                                    checkLoginInCollection("orphanage", username, password);
-                                } else {
-                                    // User not found in either collection
+                                // If user not found in current collection, optionally check the other collection
+                                if (checkOtherCollection && collection.equals("users")) {
+                                    checkLoginInCollection("orphanage", username, password, false);
+                                } else if (!checkOtherCollection) {
                                     Toast.makeText(requireContext(), "User not found", Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -114,6 +112,7 @@ public class Login extends Fragment {
                     }
                 });
     }
+
     private void saveUserDataToPrefs(String username, String collection) {
         // Use SharedPreferences to store user data during the session
         SharedPreferences prefs = requireContext().getSharedPreferences("UserSessionPrefs", Context.MODE_PRIVATE);

@@ -30,6 +30,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 import java.util.HashMap;
 import java.util.Map;
+import com.stripe.android.PaymentConfiguration;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,12 +39,17 @@ public class MainActivity extends AppCompatActivity {
     ImageView up_button;
     private FirebaseFirestore db;
     Button button_logout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        PaymentConfiguration.init(
+                getApplicationContext(),
+                "pk_test_51Qe8tiB3mxEmZn8XpuaDrHCR4AyKrFac659vkCqcPGCtcNgZNGq3dyQvYJNYol2OknB5Q7TyrIdih6PoQE5KHjJJ00eWLpR0Ea"
+        );
         // Retrieve user data from SharedPreferences
         SharedPreferences prefs = getSharedPreferences("UserSessionPrefs", MODE_PRIVATE);
         String username = prefs.getString("username", "No username");  // Default value if no data found
