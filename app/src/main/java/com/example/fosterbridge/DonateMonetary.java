@@ -15,16 +15,19 @@ import android.widget.TextView;
 public class DonateMonetary extends Fragment {
     private static final String ARG_NAME = "name";
     private static final String ARG_LOCATION = "location";
+    private static final String ARG_ORPHANAGE_USERNAME = "orphanage_username";
 
     private String orphanageName;
     private String orphanageLocation;
+    private String orphanageUsername;
 
 
-    public static DonateMonetary newInstance(String name, String location) {
+    public static DonateMonetary newInstance(String name, String location, String orphanageUsername) {
         DonateMonetary fragment = new DonateMonetary();
         Bundle args = new Bundle();
         args.putString(ARG_NAME, name);
         args.putString(ARG_LOCATION, location);
+        args.putString(ARG_ORPHANAGE_USERNAME, orphanageUsername);
         fragment.setArguments(args);
         return fragment;
     }
@@ -34,6 +37,8 @@ public class DonateMonetary extends Fragment {
         if (getArguments() != null) {
             orphanageName = getArguments().getString(ARG_NAME);
             orphanageLocation = getArguments().getString(ARG_LOCATION);
+            orphanageUsername = getArguments().getString(ARG_ORPHANAGE_USERNAME);
+
         }
     }
 
@@ -122,6 +127,7 @@ public class DonateMonetary extends Fragment {
                 Payment paymentFragment = new Payment();
                 Bundle args = new Bundle();
                 args.putString("donation_amount", amount);  // Add donation amount to Bundle
+                args.putString("orphanage_username", orphanageUsername);
                 paymentFragment.setArguments(args);
 
                 // Replace current fragment with the Payment fragment

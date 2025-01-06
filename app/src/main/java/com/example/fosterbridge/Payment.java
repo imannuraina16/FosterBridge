@@ -38,37 +38,33 @@ public class Payment extends Fragment {
 
         // Get donation amount passed from the previous fragment
         Bundle args = getArguments();
+        String orphanageUsername = null;
         if (args != null) {
             String donationAmount = args.getString("donation_amount");
+            orphanageUsername = args.getString("orphanage_username");
             if (donationAmount != null) {
                 donation_amount.setText("RM" + donationAmount);
             }
         }
 
-        // Confirm donation on button click
+        String finalOrphanageUsername = orphanageUsername; // For use in inner classes
         confirm_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Get payment method details from the card input
                 PaymentMethodCreateParams cardParams = cardInputWidget.getPaymentMethodCreateParams();
 
                 if (cardParams != null) {
-                    // Simulate successful payment
                     Toast.makeText(getContext(), "Payment Success", Toast.LENGTH_SHORT).show();
-
-                    // After the simulated payment, update Firestore donations collection
-                    updateDonationInFirestore();
+                    updateDonationInFirestore(finalOrphanageUsername);
                 } else {
-                    // If card details are invalid
                     Toast.makeText(getContext(), "Invalid card details", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
         return view;
     }
 
-    private void updateDonationInFirestore() {
+    private void updateDonationInFirestore(String orphanageUsername) {
         // Get current user ID (You can retrieve it from FirebaseAuth or your session data)
         SharedPreferences prefs = getActivity().getSharedPreferences("UserSessionPrefs", Context.MODE_PRIVATE);
         String username = prefs.getString("username", "No username");
@@ -82,7 +78,7 @@ public class Payment extends Fragment {
         // Create a donation data object
         Map<String, Object> donation = new HashMap<>();
         donation.put("amount", donationAmount);
-        donation.put("orphanage_id", orphanageId);
+        donation.put("orphanage_username", orphanageUsername);
         donation.put("username", username);
         donation.put("timestamp", com.google.firebase.Timestamp.now()); // Store the timestamp of the donation
 

@@ -76,7 +76,7 @@ public class DonateFragment extends Fragment {
     private void goToDonateMonetary(Orphanage orphanage) {
         // Create a new instance of the target fragment
         title = getActivity().findViewById(R.id.title);
-        DonateMonetary donateMonetary = DonateMonetary.newInstance(orphanage.getName(), orphanage.getLocation());
+        DonateMonetary donateMonetary = DonateMonetary.newInstance(orphanage.getName(), orphanage.getLocation(), orphanage.getUsername());
         // Replace the current fragment with the detail fragment
         FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_layout, donateMonetary);
