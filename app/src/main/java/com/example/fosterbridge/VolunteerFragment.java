@@ -12,8 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
 
 public class VolunteerFragment extends Fragment {
@@ -83,7 +85,6 @@ public class VolunteerFragment extends Fragment {
                 .addOnFailureListener(e -> Log.e("Firestore", "Failed to fetch orphanage details: " + e.getMessage()));
     }
 
-
     private void goToVolunteeringSignUp(Event event) {
         // Update title (if it exists)
         if (getActivity() != null) {
@@ -98,7 +99,8 @@ public class VolunteerFragment extends Fragment {
                 event.getEvent_name(),
                 event.getOrphanage_id(),
                 event.getEvent_description(),
-                event.getDate()
+                event.getDate(),
+                event.getEvent_id()// Pass the event_id
         );
 
         FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();

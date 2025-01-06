@@ -116,6 +116,10 @@ public class Home extends Fragment{
         FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_layout, donateMonetary);
         transaction.addToBackStack(null);
+        if (getActivity() != null) {
+            BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottomNavigationView2);
+            bottomNavigationView.setSelectedItemId(R.id.contribute);
+        }
         title.setText("Donate");
         transaction.commit();
     }

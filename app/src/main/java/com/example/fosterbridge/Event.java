@@ -7,17 +7,20 @@ public class Event {
 
     private String orphanage_name;
 
+    private String event_id;
+
     private String date;
 
     // Required empty constructor for Firestore
     public Event() {}
 
-    public Event(String event_name, String orphanage_id, String event_description, String orphanage_name, String date) {
+    public Event(String event_name, String orphanage_id, String event_description, String orphanage_name, String date, String event_id) {
         this.event_name = event_name;
         this.orphanage_id = orphanage_id;
         this.event_description = event_description;
         this.orphanage_name = orphanage_name;
         this.date = date;
+        this.event_id = event_id;
     }
 
     public String getEvent_name() {
@@ -46,5 +49,13 @@ public class Event {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getEvent_id() {
+        return event_id;
+    }
+
+    public void setEvent_id(String event_id) {
+        this.event_id = event_id;
     }
 }
