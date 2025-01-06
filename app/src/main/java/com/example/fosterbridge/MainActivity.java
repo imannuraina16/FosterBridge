@@ -1,5 +1,8 @@
 package com.example.fosterbridge;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -34,13 +37,17 @@ public class MainActivity extends AppCompatActivity {
     TextView title;
     ImageView up_button;
     private FirebaseFirestore db;
-
+    Button button_logout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        // Retrieve user data from SharedPreferences
+        SharedPreferences prefs = getSharedPreferences("UserSessionPrefs", MODE_PRIVATE);
+        String username = prefs.getString("username", "No username");  // Default value if no data found
+        String userType = prefs.getString("userType", "No user type");
         FirebaseApp.initializeApp(this);
         replaceFragment(new Home());
         title = findViewById(R.id.title);
@@ -70,6 +77,40 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
+        if (!isUserLoggedIn()) {
+            // If user is not logged in, redirect to login screen
+            Intent intent = new Intent(MainActivity.this, Login.class);
+            startActivity(intent);
+            finish();
+        }
+        // Initialize the logout button
+        button_logout = findViewById(R.id.button_logout);
+
+        // Set up the logout button click listener
+        button_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logoutUser();
+            }
+        });
+    }
+
+    private void logoutUser() {
+        // Clear user data from SharedPreferences
+        SharedPreferences prefs = getSharedPreferences("UserSessionPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.clear();  // Remove all session data
+        editor.apply();   // Apply changes
+
+        // Redirect to the LoginActivity
+        Intent intent = new Intent(MainActivity.this, RegisterLoginActivity.class);  // Ensure you have a LoginActivity
+        startActivity(intent);
+        finish();  // Close MainActivity to prevent the user from going back to it after logout
+
+    }
+    private boolean isUserLoggedIn() {
+        SharedPreferences prefs = getSharedPreferences("UserSessionPrefs", MODE_PRIVATE);
+        return prefs.contains("username");  // If the username is stored, the user is logged in
     }
 
     private void replaceFragment(Fragment fragment){
@@ -92,4 +133,5 @@ public class MainActivity extends AppCompatActivity {
             up_button.setVisibility(View.VISIBLE);
         }
     }
+
 }

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Register">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="19dp"
+        tools:layout_editor_absoluteY="3dp">
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="44dp"
+            android:labelFor="@id/enter_username"
+            android:text="Username*"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="116dp"
+            android:labelFor="@id/enter_email"
+            android:text="Email*"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/enter_password"
+            android:layout_width="317dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            android:ems="10"
+            android:hint="Enter password"
+            android:inputType="textPassword"
+            android:labelFor="@id/enter_password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.542"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pass" />
+
+        <TextView
+            android:id="@+id/pass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="196dp"
+            android:text="Password*"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/enter_email"
+            android:layout_width="315dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            android:ems="10"
+            android:hint="Enter email"
+            android:inputType="textEmailAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.531"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email" />
+
+        <EditText
+            android:id="@+id/enter_username"
+            android:layout_width="316dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="60dp"
+            android:ems="10"
+            android:hint="Enter your username"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/user_type_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/enter_password"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <RadioButton
+                android:id="@+id/button_donor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
+                android:text="Donor" />
+
+            <RadioButton
+                android:id="@+id/button_orphanage"
+                android:layout_width="144dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
+                android:text="Orphanage" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/button_getstarted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:text="Get Started"
+            android:backgroundTint="#81ACFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/enter_password" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
