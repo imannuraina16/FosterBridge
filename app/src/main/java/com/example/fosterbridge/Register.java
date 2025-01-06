@@ -97,6 +97,7 @@ public class Register extends Fragment {
         user.put("password", password); // In production, passwords should be hashed
         user.put("userType", buttonOrphanage.isChecked() ? "Orphanage" : "Donor");
 
+
         // Save data to the appropriate Firestore collection
         db.collection(collection)
                 .document(username) // Use email as the document ID
