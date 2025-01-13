@@ -69,7 +69,7 @@ public class VolunteerFragment extends Fragment {
     }
 
     private void fetchOrphanageDetails(Event event) {
-        db.collection("orphanage").document(event.getOrphanage_id()).get()
+        db.collection("orphanage").document(event.getUsername()).get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
                         // Set orphanage name in the event object
@@ -79,7 +79,7 @@ public class VolunteerFragment extends Fragment {
                         eventArrayList.add(event);
                         eventAdapter.notifyDataSetChanged();
                     } else {
-                        Log.e("Firestore", "Orphanage not found for ID: " + event.getOrphanage_id());
+                        Log.e("Firestore", "Orphanage not found for ID: " + event.getUsername());
                     }
                 })
                 .addOnFailureListener(e -> Log.e("Firestore", "Failed to fetch orphanage details: " + e.getMessage()));
@@ -97,7 +97,6 @@ public class VolunteerFragment extends Fragment {
         // Navigate to VolunteeringSignUp Fragment
         VolunteeringSignUp volunteeringSignUp = VolunteeringSignUp.newInstance(
                 event.getEvent_name(),
-                event.getOrphanage_id(),
                 event.getEvent_description(),
                 event.getDate(),
                 event.getEvent_id()// Pass the event_id

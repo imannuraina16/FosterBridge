@@ -2,7 +2,7 @@ package com.example.fosterbridge;
 
 public class Event {
     private String event_name;
-    private String orphanage_id;
+    private String username;
     private String event_description;
 
     private String orphanage_name;
@@ -14,21 +14,28 @@ public class Event {
     // Required empty constructor for Firestore
     public Event() {}
 
-    public Event(String event_name, String orphanage_id, String event_description, String orphanage_name, String date, String event_id) {
+    public Event(String event_name, String username, String event_description, String orphanage_name, String date, String event_id) {
         this.event_name = event_name;
-        this.orphanage_id = orphanage_id;
+        this.username = username;
         this.event_description = event_description;
         this.orphanage_name = orphanage_name;
         this.date = date;
         this.event_id = event_id;
     }
 
+    public Event(String event_name, String date, String event_description, String username){
+        this.event_name = event_name;
+        this.username = username;
+        this.event_description = event_description;
+        this.date = date;
+    }
+
     public String getEvent_name() {
         return event_name;
     }
 
-    public String getOrphanage_id() {
-        return orphanage_id;
+    public String getUsername() {
+        return username;
     }
 
     public String getEvent_description() {

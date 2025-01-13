@@ -57,4 +57,3 @@ public class Contribute extends Fragment {
         return view;
     }
 }
-

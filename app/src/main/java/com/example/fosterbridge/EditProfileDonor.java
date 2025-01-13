@@ -1,5 +1,6 @@
 package com.example.fosterbridge;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -105,6 +106,7 @@ public class EditProfileDonor extends Fragment {
 
     private void saveProfileData() {
         // Retrieve updated data from the EditTexts
+        String updatedUsername = inputUsername.getText().toString();  // Edited username
         String updatedName = inputName.getText().toString();
         String updatedEmail = inputEmail.getText().toString();
         String updatedPassword = inputPassword.getText().toString();
@@ -114,9 +116,6 @@ public class EditProfileDonor extends Fragment {
         String updatedBirthDate = inputBirthDate.getText().toString();
 
         // Prepare the data to be saved in Firestore
-        String username = inputUsername.getText().toString();  // Use the current username (from SharedPreferences)
-
-        // Create a Map to store the data
         Map<String, Object> userProfile = new HashMap<>();
         userProfile.put("name", updatedName);
         userProfile.put("email", updatedEmail);
@@ -126,17 +125,79 @@ public class EditProfileDonor extends Fragment {
         userProfile.put("contact", updatedContact);
         userProfile.put("birthDate", updatedBirthDate);
 
-        // Save data to Firestore under the "users" collection, with the username as the document ID
-        db.collection("users").document(username)
-                .set(userProfile)
-                .addOnSuccessListener(aVoid -> {
-                    // Data saved successfully, show a success message
-                    Toast.makeText(getActivity(), "Profile has been updated successfully.", Toast.LENGTH_SHORT).show();
+        // Retrieve the old username from SharedPreferences
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("UserSessionPrefs", Context.MODE_PRIVATE);
+        String oldUsername = sharedPreferences.getString("username", "No username");
+
+        // Check if the updated username already exists in the database
+        db.collection("users").document(updatedUsername).get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        // Username already exists, show a Toast message and don't allow the profile update
+                        Toast.makeText(getActivity(), "Username already exists. Please choose a different one.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // If the username has changed, perform the rename operation
+                        if (!updatedUsername.equals(oldUsername)) {
+                            // Fetch data from the old document and then save it under the new username
+                            db.collection("users").document(oldUsername).get()
+                                    .addOnSuccessListener(doc -> {
+                                        if (doc.exists()) {
+                                            // Move the data to the new username (create a new document)
+                                            db.collection("users").document(updatedUsername)
+                                                    .set(userProfile)
+                                                    .addOnSuccessListener(aVoid -> {
+                                                        // Data saved successfully, now delete the old document
+                                                        deleteOldDocument(oldUsername);
+
+                                                        // Update SharedPreferences with the new username
+                                                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                                                        editor.putString("username", updatedUsername);
+                                                        editor.apply();
+
+                                                        Toast.makeText(getActivity(), "Profile has been updated successfully.", Toast.LENGTH_SHORT).show();
+                                                    })
+                                                    .addOnFailureListener(e -> {
+                                                        // Handle failure in saving data to new document
+                                                        Toast.makeText(getActivity(), "Failed to update profile. Please try again.", Toast.LENGTH_SHORT).show();
+                                                    });
+                                        }
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        // Handle failure in retrieving the old document
+                                        Toast.makeText(getActivity(), "Failed to fetch old data. Please try again.", Toast.LENGTH_SHORT).show();
+                                    });
+                        } else {
+                            // If the username hasn't changed, just update the document with the current username
+                            db.collection("users").document(updatedUsername)
+                                    .set(userProfile)
+                                    .addOnSuccessListener(aVoid -> {
+                                        // Data saved successfully
+                                        Toast.makeText(getActivity(), "Profile has been updated successfully.", Toast.LENGTH_SHORT).show();
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        // Handle failure
+                                        Toast.makeText(getActivity(), "Failed to update profile. Please try again.", Toast.LENGTH_SHORT).show();
+                                    });
+                        }
+                    }
                 })
                 .addOnFailureListener(e -> {
-                    // Handle failure (e.g., show an error message)
-                    Toast.makeText(getActivity(), "Failed to update profile. Please try again.", Toast.LENGTH_SHORT).show();
+                    // Handle failure to check for existing username
+                    Toast.makeText(getActivity(), "Failed to check username. Please try again.", Toast.LENGTH_SHORT).show();
                 });
     }
+
+    private void deleteOldDocument(String oldUsername) {
+        db.collection("users").document(oldUsername)
+                .delete()
+                .addOnSuccessListener(aVoid -> {
+                    // Old document deleted successfully
+                })
+                .addOnFailureListener(e -> {
+                    // Handle failure to delete old document
+                    Toast.makeText(getActivity(), "Failed to delete old profile. Please try again.", Toast.LENGTH_SHORT).show();
+                });
+    }
+
 
 }

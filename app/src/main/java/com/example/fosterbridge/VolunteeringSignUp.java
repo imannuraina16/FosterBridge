@@ -19,15 +19,12 @@ import java.util.Map;
 
 public class VolunteeringSignUp extends Fragment {
     private static final String ARG_EVENT_NAME = "event_name";
-    private static final String ARG_ORPHANAGE_ID = "orphanage_id";
     private static final String ARG_EVENT_DESCRIPTION = "event_description";
     private static final String ARG_DATE = "date";
+    private static final String ARG_EVENT_ID = "event_id";
 
-    private static final String ARG_EVENT_ID = "event_id"; // Add event_id argument
-    private String eventId; // Declare event_id
-
+    private String eventId;
     private String eventName;
-    private String orphanageId;
     private String eventDescription;
     private String eventDate;
 
@@ -37,11 +34,10 @@ public class VolunteeringSignUp extends Fragment {
         // Required empty constructor
     }
 
-    public static VolunteeringSignUp newInstance(String eventName, String orphanageId, String eventDescription, String eventDate, String eventId) {
+    public static VolunteeringSignUp newInstance(String eventName, String eventDescription, String eventDate, String eventId) {
         VolunteeringSignUp fragment = new VolunteeringSignUp();
         Bundle args = new Bundle();
         args.putString(ARG_EVENT_NAME, eventName);
-        args.putString(ARG_ORPHANAGE_ID, orphanageId);
         args.putString(ARG_EVENT_DESCRIPTION, eventDescription);
         args.putString(ARG_EVENT_ID, eventId);
         args.putString(ARG_DATE, eventDate);
@@ -54,7 +50,6 @@ public class VolunteeringSignUp extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             eventName = getArguments().getString(ARG_EVENT_NAME);
-            orphanageId = getArguments().getString(ARG_ORPHANAGE_ID);
             eventDescription = getArguments().getString(ARG_EVENT_DESCRIPTION);
             eventDate = getArguments().getString(ARG_DATE);
             eventId = getArguments().getString(ARG_EVENT_ID);
@@ -69,7 +64,6 @@ public class VolunteeringSignUp extends Fragment {
         View view = inflater.inflate(R.layout.fragment_volunteering_sign_up, container, false);
 
         TextView eventNameTextView = view.findViewById(R.id.event_name);
-        TextView orphanageNameTextView = view.findViewById(R.id.orphanage_name);
         TextView eventDescriptionTextView = view.findViewById(R.id.event_description);
         TextView eventDateTextView = view.findViewById(R.id.date);
         Button volunteerSignUpButton = view.findViewById(R.id.button_signup);
@@ -78,26 +72,10 @@ public class VolunteeringSignUp extends Fragment {
         eventDescriptionTextView.setText(eventDescription);
         eventDateTextView.setText(eventDate);
 
-        // Fetch orphanage name using orphanageId
-        fetchOrphanageName(orphanageId, orphanageNameTextView);
-
         // Handle volunteer sign-up button click
         volunteerSignUpButton.setOnClickListener(v -> storeVolunteerData());
 
         return view;
-    }
-
-    private void fetchOrphanageName(String orphanageId, TextView orphanageNameTextView) {
-        db.collection("orphanage").document(orphanageId).get()
-                .addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists()) {
-                        String orphanageName = documentSnapshot.getString("name");
-                        orphanageNameTextView.setText(orphanageName);
-                    } else {
-                        orphanageNameTextView.setText("Orphanage not found");
-                    }
-                })
-                .addOnFailureListener(e -> orphanageNameTextView.setText("Error loading orphanage"));
     }
 
     private void storeVolunteerData() {
@@ -156,5 +134,4 @@ public class VolunteeringSignUp extends Fragment {
                     }
                 });
     }
-
 }

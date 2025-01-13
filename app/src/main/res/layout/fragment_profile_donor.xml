@@ -8,21 +8,7 @@
 
 
     <Button
-        android:id="@+id/VolunteeringButton"
-        android:layout_width="312dp"
-        android:layout_height="90dp"
-        android:backgroundTint="#9eb8ff"
-        android:text="Volunteering History"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
-
-    <Button
-        android:id="@+id/DonationButton"
+        android:id="@+id/DonationHistoryButton"
         android:layout_width="312dp"
         android:layout_height="90dp"
         android:backgroundTint="#9eb8ff"
@@ -33,7 +19,7 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.711" />
+        app:layout_constraintVertical_bias="0.606" />
 
     <Button
         android:id="@+id/editProfileButton"
@@ -55,7 +41,7 @@
         android:id="@+id/nameTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="admin"
+        android:hint="name"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"

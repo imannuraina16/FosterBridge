@@ -85,6 +85,3 @@ public class DonateFragment extends Fragment {
         transaction.commit();
     }
 }
-
-
-
