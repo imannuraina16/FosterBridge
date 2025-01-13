@@ -23,7 +23,6 @@ public class ProfileOrphanage extends Fragment {
     private TextView nameTextView;
     private Button editProfileButton;
     private Button updateButton;
-    private Button donateButton;
     private Button wishlistButton;
     private Button volunteerButton;
     TextView title;
@@ -45,7 +44,6 @@ public class ProfileOrphanage extends Fragment {
         nameTextView = view.findViewById(R.id.nameTV);
         editProfileButton = view.findViewById(R.id.editProfileButton);
         updateButton = view.findViewById(R.id.UpdateButton);
-        donateButton = view.findViewById(R.id.DonateButton);
         wishlistButton = view.findViewById(R.id.WishlistButton);
         volunteerButton = view.findViewById(R.id.VolunteerButton);
         title = getActivity().findViewById(R.id.title);
@@ -81,7 +79,6 @@ public class ProfileOrphanage extends Fragment {
         // Set onClickListeners for buttons
         editProfileButton.setOnClickListener(v -> navigateToEditProfile());
         updateButton.setOnClickListener(v -> navigateToOrphanageUpdates());
-        donateButton.setOnClickListener(v -> navigateToDonate());
         wishlistButton.setOnClickListener(v -> navigateToWishlist());
         volunteerButton.setOnClickListener(v -> navigateToVolunteer());
 
@@ -102,15 +99,6 @@ public class ProfileOrphanage extends Fragment {
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_layout, orphanageUpdatesFragment);
         transaction.addToBackStack(null);
-        transaction.commit();
-    }
-
-    private void navigateToDonate() {
-        DonateMonetary donateFragment = new DonateMonetary();
-        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_layout, donateFragment);
-        transaction.addToBackStack(null);
-        title.setText("Donation");
         transaction.commit();
     }
 

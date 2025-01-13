@@ -10,10 +10,6 @@
         android:title="Contribute"
         android:icon="@drawable/heart_solid"/>
     <item
-        android:id="@+id/message"
-        android:title="Message"
-        android:icon="@drawable/message" />
-    <item
         android:id="@+id/profile"
         android:title="Profile"
         android:icon="@drawable/profile" />

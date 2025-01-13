@@ -99,14 +99,21 @@ public class Home extends Fragment{
                 Log.e("Firestore error", error.getMessage());
                 return;
             }
+
             for (DocumentChange dc : value.getDocumentChanges()) {
                 if (dc.getType() == DocumentChange.Type.ADDED) {
-                    orphanageArrayList.add(dc.getDocument().toObject(Orphanage.class));
+                    Orphanage orphanage = dc.getDocument().toObject(Orphanage.class);
+
+                    // Check if the name or location is null
+                    if (orphanage.getName() != null && orphanage.getLocation() != null) {
+                        orphanageArrayList.add(orphanage);
+                    }
                 }
-                myAdapter.notifyDataSetChanged();
             }
+            myAdapter.notifyDataSetChanged();
         });
     }
+
 
     private void goToDonateMonetary(Orphanage orphanage) {
         // Create a new instance of the target fragment

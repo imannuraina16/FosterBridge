@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.stripe.android.view.CardInputWidget;
@@ -24,6 +25,7 @@ public class Payment extends Fragment {
     private CardInputWidget cardInputWidget;
     private Button confirm_button;
     private FirebaseFirestore db;  // Firebase Firestore reference
+    TextView title;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,6 +34,7 @@ public class Payment extends Fragment {
         donation_amount = view.findViewById(R.id.donation_amount);
         cardInputWidget = view.findViewById(R.id.card_input_widget);
         confirm_button = view.findViewById(R.id.button_confirm_donate);
+        title = getActivity().findViewById(R.id.title);
 
         // Initialize Firestore
         db = FirebaseFirestore.getInstance();
@@ -59,8 +62,10 @@ public class Payment extends Fragment {
                 } else {
                     Toast.makeText(getContext(), "Invalid card details", Toast.LENGTH_SHORT).show();
                 }
+                navigateToDonationHistory();
             }
         });
+
         return view;
     }
 
@@ -110,5 +115,14 @@ public class Payment extends Fragment {
                         Toast.makeText(getContext(), "Error fetching donation count: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    private void navigateToDonationHistory(){
+        DonationHistory donationHistory = new DonationHistory();
+        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_layout, donationHistory);
+        transaction.addToBackStack(null);
+        title.setText("Donation History");
+        transaction.commit();
     }
 }

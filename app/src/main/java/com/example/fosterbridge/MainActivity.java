@@ -72,9 +72,9 @@ public class MainActivity extends AppCompatActivity {
             } else if (item.getItemId() == R.id.contribute) {
                 replaceFragment(new Contribute());
                 title.setText("Contribute");
-            } else if (item.getItemId() == R.id.message) {
-                replaceFragment(new Message());
-                title.setText("Message");
+//            } else if (item.getItemId() == R.id.message) {
+//                replaceFragment(new Message());
+//                title.setText("Message");
             } else if (item.getItemId() == R.id.profile && userType.equals("users")) {
                 replaceFragment(new ProfileDonor());
                 title.setText("Profile");

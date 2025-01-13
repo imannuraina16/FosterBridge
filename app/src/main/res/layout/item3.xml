@@ -9,33 +9,24 @@
     app:cardElevation="5dp"
     android:layout_centerHorizontal="true">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:layout_marginVertical="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:padding="16dp">
 
-        <LinearLayout
+        <!-- Orphanage Name -->
+        <TextView
+            android:id="@+id/orphanage_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
+            android:fontFamily="sans-serif-black"
+            android:text="Orphanage Name"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"/>
 
-            <TextView
-                android:id="@+id/orphanage_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-black"
-                android:text="Orphanage Name"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-
-        </LinearLayout>
-
+        <!-- Orphanage Address -->
         <TextView
             android:id="@+id/orphanage_address"
             android:layout_width="wrap_content"
@@ -43,19 +34,23 @@
             android:fontFamily="sans-serif"
             android:text="Orphanage Address"
             android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:layout_below="@id/orphanage_name"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="8dp"/>
 
+        <!-- Donate Button at the Bottom-Right -->
         <Button
             android:id="@+id/button_donate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#81ACFF"
             android:text="Donate"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="end"
-           />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="35dp"
+            android:layout_marginEnd="5dp"/>
 
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 public class DonateMonetary extends Fragment {
     private static final String ARG_NAME = "name";
     private static final String ARG_LOCATION = "location";
@@ -20,6 +22,7 @@ public class DonateMonetary extends Fragment {
     private String orphanageName;
     private String orphanageLocation;
     private String orphanageUsername;
+    TextView button_seeprofile;
 
 
     public static DonateMonetary newInstance(String name, String location, String orphanageUsername) {
@@ -67,6 +70,24 @@ public class DonateMonetary extends Fragment {
         Button btnRm300 = view.findViewById(R.id.btnRm300);
         Button btnRm500 = view.findViewById(R.id.btnRm500);
         Button btnRm1000 = view.findViewById(R.id.btnRm1000);
+        button_seeprofile = view.findViewById(R.id.see_profile);
+
+        button_seeprofile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProfileOrphanagePov2 profileOrphanagePov2 = new ProfileOrphanagePov2();
+                Bundle args = new Bundle();
+                args.putString(ARG_NAME, orphanageName); // Make sure these values are not null
+                args.putString(ARG_LOCATION, orphanageLocation);
+                args.putString(ARG_ORPHANAGE_USERNAME, orphanageUsername);
+                profileOrphanagePov2.setArguments(args); // Set the arguments
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, profileOrphanagePov2);
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+            }
+        });
 
         btnRm10.setOnClickListener(new View.OnClickListener() {
             @Override
