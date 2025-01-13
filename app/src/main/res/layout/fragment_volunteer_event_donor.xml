@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="104dp"
+        android:text="orphanage_name"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="217dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="username"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:layout_editor_absoluteX="238dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="83dp"
+        android:text="orphanage"
+        android:textColor="#88B1FC"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="182dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="Volunteer"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="248dp" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="409dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="6dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <LinearLayout
+        android:id="@+id/grey_box_1"
+        android:layout_width="415dp"
+        android:layout_height="57dp"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="1dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/grey_box_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider">
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="         Event-1"
+            android:textAlignment="viewStart" />
+
+        <TextView
+            android:id="@+id/clickableTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="Apply                  "
+            android:textColor="#000000"
+            android:textDecorationLine="underline" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/grey_box_2"
+        android:layout_width="414dp"
+        android:layout_height="57dp"
+        android:layout_margin="16dp"
+        android:background="#D3D3D3"
+        tools:layout_editor_absoluteX="-2dp"
+        tools:layout_editor_absoluteY="332dp">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="         Event-2"
+            android:textAlignment="viewStart" />
+
+        <TextView
+            android:id="@+id/clickableTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="Apply                  "
+            android:textColor="#000000"
+            android:textDecorationLine="underline" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/grey_box_3"
+        android:layout_width="414dp"
+        android:layout_height="57dp"
+        android:layout_margin="16dp"
+        android:background="#FFFFFF"
+        tools:layout_editor_absoluteX="-2dp"
+        tools:layout_editor_absoluteY="389dp"/>
+
+    <LinearLayout
+        android:id="@+id/grey_box_4"
+        android:layout_width="414dp"
+        android:layout_height="57dp"
+        android:layout_margin="16dp"
+        android:background="#D3D3D3"
+        tools:layout_editor_absoluteX="-2dp"
+        tools:layout_editor_absoluteY="446dp"/>
+
+    <LinearLayout
+        android:id="@+id/grey_box_5"
+        android:layout_width="414dp"
+        android:layout_height="57dp"
+        android:layout_margin="16dp"
+        android:background="#FFFFFF"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="503dp"/>
+
+    <LinearLayout
+        android:id="@+id/grey_box_6"
+        android:layout_width="414dp"
+        android:layout_height="57dp"
+        android:layout_margin="16dp"
+        android:background="#D3D3D3"
+        tools:layout_editor_absoluteX="-2dp"
+        tools:layout_editor_absoluteY="560dp"/>
+
+    <LinearLayout
+        android:id="@+id/grey_box_7"
+        android:layout_width="414dp"
+        android:layout_height="57dp"
+        android:layout_margin="16dp"
+        android:background="#FFFFFF"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="617dp"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.159"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.089"
+        app:shapeAppearanceOverlay="@style/CircleImageView"
+        tools:src="@tools:sample/avatars" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

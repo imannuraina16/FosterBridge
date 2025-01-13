@@ -37,6 +37,9 @@ public class EditProfileDonorFragment extends Fragment {
         // Save button click listener
         saveButton.setOnClickListener(v -> saveProfileChanges());
 
+        // Profile picture click listener
+        donorProfilePic.setOnClickListener(v -> notifyProfilePictureChangeUnavailable());
+
         return view;
     }
 
@@ -92,5 +95,9 @@ public class EditProfileDonorFragment extends Fragment {
 
         // Simulate saving profile changes (Replace with actual database/API update logic)
         Toast.makeText(getContext(), "Profile updated successfully!", Toast.LENGTH_SHORT).show();
+    }
+
+    private void notifyProfilePictureChangeUnavailable() {
+        Toast.makeText(getContext(), "Oops! The option to change your profile picture is currently unavailable. Please try again later.", Toast.LENGTH_LONG).show();
     }
 }

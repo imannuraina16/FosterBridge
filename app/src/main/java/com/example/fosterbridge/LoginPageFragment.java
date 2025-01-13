@@ -11,9 +11,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-public class LoginFragment extends Fragment {
+public class LoginPageFragment extends Fragment {
     private EditText inputUsername, inputPassword;
-    private Button loginButton, registerButton;
+    private Button selectRegister;
+    private TextView usernameTV, passwordTV;
+
+    public LoginPageFragment() {
+        // Required empty public constructor
+    }
 
     @Nullable
     @Override
@@ -23,12 +28,12 @@ public class LoginFragment extends Fragment {
         // Initialize UI components
         inputUsername = view.findViewById(R.id.inputUsername);
         inputPassword = view.findViewById(R.id.inputPassword);
-        loginButton = view.findViewById(R.id.selectLoginButton);
-        registerButton = view.findViewById(R.id.selectRegister);
+        selectRegister = view.findViewById(R.id.selectRegister);
+        usernameTV = view.findViewById(R.id.profilePic);
+        passwordTV = view.findViewById(R.id.passwordTV);
 
-        // Set button click listeners
-        loginButton.setOnClickListener(v -> loginUser());
-        registerButton.setOnClickListener(v -> navigateToRegistrationFragment());
+        // Set up click listener for Register button
+        selectRegister.setOnClickListener(v -> onRegisterClick());
 
         return view;
     }
@@ -56,6 +61,40 @@ public class LoginFragment extends Fragment {
         }
     }
 
+    private void onRegisterClick() {
+        // Get user input
+        String username = inputUsername.getText().toString().trim();
+        String password = inputPassword.getText().toString().trim();
+
+        // Basic validation for empty fields
+        if (TextUtils.isEmpty(username)) {
+            inputUsername.setError("Username is required");
+            return;
+        }
+
+        if (TextUtils.isEmpty(password)) {
+            inputPassword.setError("Password is required");
+            return;
+        }
+
+        // You can perform login validation here (e.g., compare with hardcoded credentials or make an API call)
+        if (isLoginValid(username, password)) {
+            // Handle successful login (e.g., navigate to the next screen)
+            Toast.makeText(getContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+            // You can navigate to a different fragment or activity here, for example:
+            // navigateToHomePage();
+        } else {
+            // Show error message for invalid login
+            Toast.makeText(getContext(), "Invalid username or password", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // Dummy login validation method - replace this with real login logic
+    private boolean isLoginValid(String username, String password) {
+        // Example: Replace with actual authentication logic (API call, database check, etc.)
+        return username.equals("admin") && password.equals("password123");
+    }
+
     private boolean validateCredentials(String username, String password) {
         // Replace this with actual validation logic (e.g., API call or database query)
         return username.equals("testuser") && password.equals("password123");
@@ -63,74 +102,10 @@ public class LoginFragment extends Fragment {
 
     private void navigateToRegistrationFragment() {
         // Navigate to Registration Fragment
-        Fragment registrationFragment = new AccRegistrationFragment(); // Replace with the actual Registration Fragment class
+        Fragment registrationFragment = new SignUpFragment(); // Replace with the actual Registration Fragment class
         FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, registrationFragment); // Replace 'fragment_container' with your container ID
         transaction.addToBackStack(null); // Optional: Add to back stack for navigation
         transaction.commit();
     }
 }
-
-
-//import android.os.Bundle;
-//
-//import androidx.fragment.app.Fragment;
-//
-//import android.view.LayoutInflater;
-//import android.view.View;
-//import android.view.ViewGroup;
-//
-///**
-// * A simple {@link Fragment} subclass.
-// * Use the {@link LoginPageFragment#newInstance} factory method to
-// * create an instance of this fragment.
-// */
-//public class LoginPageFragment extends Fragment {
-//
-//    // TODO: Rename parameter arguments, choose names that match
-//    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-//    private static final String ARG_PARAM1 = "param1";
-//    private static final String ARG_PARAM2 = "param2";
-//
-//    // TODO: Rename and change types of parameters
-//    private String mParam1;
-//    private String mParam2;
-//
-//    public LoginPageFragment() {
-//        // Required empty public constructor
-//    }
-//
-//    /**
-//     * Use this factory method to create a new instance of
-//     * this fragment using the provided parameters.
-//     *
-//     * @param param1 Parameter 1.
-//     * @param param2 Parameter 2.
-//     * @return A new instance of fragment LoginPageFragment.
-//     */
-//    // TODO: Rename and change types and number of parameters
-//    public static LoginPageFragment newInstance(String param1, String param2) {
-//        LoginPageFragment fragment = new LoginPageFragment();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
-//
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
-//    }
-//
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_login_page, container, false);
-//    }
-//}

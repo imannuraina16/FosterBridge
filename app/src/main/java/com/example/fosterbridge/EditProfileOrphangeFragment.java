@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class EditProfileOrphanageFragment extends Fragment {
+public class EditProfileOrphangeFragment extends Fragment {
     private EditText inputOrphanageName, inputContact, inputEmail, inputAddress, inputRegisterNum;
     private Button saveButton;
     private ImageView orphanageProfilePic;
@@ -18,10 +18,10 @@ public class EditProfileOrphanageFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_edit_profile_orphanage, container, false);
+        View view = inflater.inflate(R.layout.fragment_edit_profile_orphange, container, false);
 
         // Initialize UI components
-        orphanageProfilePic = view.findViewById(R.id.TVusername);
+        orphanageProfilePic = view.findViewById(R.id.profilePic);
         inputOrphanageName = view.findViewById(R.id.inputOrphanageName);
         inputContact = view.findViewById(R.id.inputContact);
         inputEmail = view.findViewById(R.id.inputEmail);
@@ -34,6 +34,12 @@ public class EditProfileOrphanageFragment extends Fragment {
 
         // Save button click listener
         saveButton.setOnClickListener(v -> saveProfileChanges());
+
+        // Profile picture change click listener
+        orphanageProfilePic.setOnClickListener(v -> {
+            // Show user-friendly toast message for unavailable feature
+            Toast.makeText(getContext(), "Oops! The option to change your profile picture is currently unavailable. Please try again later.", Toast.LENGTH_LONG).show();
+        });
 
         return view;
     }

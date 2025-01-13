@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".EditProfileDonorFragment">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/donorProfilePic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,7 +16,8 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.248" />
+        app:layout_constraintVertical_bias="0.248"
+        app:shapeAppearanceOverlay="@style/CircleImageView"/>
 
     <TextView
         android:id="@+id/TVdonor"
@@ -30,7 +31,7 @@
         app:layout_constraintVertical_bias="0.443" />
 
     <TextView
-        android:id="@+id/TVusername"
+        android:id="@+id/profilePic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="username"
@@ -57,18 +58,18 @@
 
     <EditText
         android:id="@+id/inputUsername"
-        android:layout_width="106dp"
-        android:layout_height="39dp"
+        android:layout_width="163dp"
+        android:layout_height="37dp"
         android:ems="10"
         android:inputType="text"
         android:text="username"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.724"
+        app:layout_constraintHorizontal_bias="0.899"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.497" />
+        app:layout_constraintVertical_bias="0.495" />
 
     <TextView
         android:id="@+id/name2"
@@ -265,5 +266,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.858" />
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#9eb8ff"
+        android:text="Save Profile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.944" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

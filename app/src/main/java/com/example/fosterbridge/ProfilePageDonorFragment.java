@@ -1,64 +1,98 @@
 package com.example.fosterbridge;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.*;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import com.google.android.material.imageview.ShapeableImageView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfilePageDonorFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ProfilePageDonorFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private Button contributionButton, impactTrackerButton, volunteeringButton, donationButton, messageButton, editProfileButton;
+    private TextView profilePic, nameTV, donorTV;
+    private ShapeableImageView profileImageView;
 
     public ProfilePageDonorFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfilePageDonorFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfilePageDonorFragment newInstance(String param1, String param2) {
-        ProfilePageDonorFragment fragment = new ProfilePageDonorFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_profile_page_donor, container, false);
+
+        // Initialize UI components
+        contributionButton = view.findViewById(R.id.ContributionButton);
+        impactTrackerButton = view.findViewById(R.id.ImpactTrackerButton);
+        volunteeringButton = view.findViewById(R.id.VolunteeringButton);
+        donationButton = view.findViewById(R.id.DonationButton);
+        messageButton = view.findViewById(R.id.MessageButton);
+        editProfileButton = view.findViewById(R.id.editProfileButton);
+        profilePic = view.findViewById(R.id.profilePic);
+        nameTV = view.findViewById(R.id.nameTV);
+        donorTV = view.findViewById(R.id.donorTV);
+        profileImageView = view.findViewById(R.id.imageView);
+
+        // Set default text
+        preFillUserData();
+
+        // Set up onClick listeners for buttons
+        contributionButton.setOnClickListener(v -> onContributionClick());
+        impactTrackerButton.setOnClickListener(v -> onImpactTrackerClick());
+        volunteeringButton.setOnClickListener(v -> onVolunteeringHistoryClick());
+        donationButton.setOnClickListener(v -> onDonationHistoryClick());
+        messageButton.setOnClickListener(v -> onSendMessageClick());
+        editProfileButton.setOnClickListener(v -> onEditProfileClick());
+
+        // Set up click listener for profile picture
+        profileImageView.setOnClickListener(v -> {
+            // For now, show a message when clicking on the profile picture (can be extended later)
+            Toast.makeText(getContext(), "Profile picture clicked!", Toast.LENGTH_SHORT).show();
+        });
+
+        return view;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    private void preFillUserData() {
+        // Replace with real data retrieval logic, e.g., from a database or API
+        nameTV.setText("John Doe");
+        donorTV.setText("Donor");
+        profilePic.setText("Welcome, John!");
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile_page_donor, container, false);
+    private void onContributionClick() {
+        // Handle Contribution button click
+        Toast.makeText(getContext(), "Contribution page coming soon!", Toast.LENGTH_SHORT).show();
+    }
+
+    private void onImpactTrackerClick() {
+        // Handle Impact Tracker button click
+        Toast.makeText(getContext(), "Impact Tracker page coming soon!", Toast.LENGTH_SHORT).show();
+    }
+
+    private void onVolunteeringHistoryClick() {
+        // Handle Volunteering History button click
+        Toast.makeText(getContext(), "Volunteering History page coming soon!", Toast.LENGTH_SHORT).show();
+    }
+
+    private void onDonationHistoryClick() {
+        // Handle Donation History button click
+        Toast.makeText(getContext(), "Donation History page coming soon!", Toast.LENGTH_SHORT).show();
+    }
+
+    private void onSendMessageClick() {
+        // Handle Send Message button click
+        Toast.makeText(getContext(), "Send Message page coming soon!", Toast.LENGTH_SHORT).show();
+    }
+
+    private void onEditProfileClick() {
+        // Handle Edit Profile button click
+        // You can navigate to another fragment or activity to edit the profile
+        Toast.makeText(getContext(), "Edit Profile page coming soon!", Toast.LENGTH_SHORT).show();
     }
 }

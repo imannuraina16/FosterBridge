@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="#9eb8ff"
-    tools:context=".ProfileOrphanageFragment">
+    tools:context=".ProfilePageOrphanageFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ProfileOrphanageFragment"
+        tools:context=".ProfilePageOrphanageFragment"
         tools:layout_editor_absoluteX="61dp"
         tools:layout_editor_absoluteY="0dp">
 
@@ -50,11 +50,15 @@
             android:backgroundTint="#9eb8ff"
             android:text="Donate"
             android:textSize="20sp"
-            tools:layout_editor_absoluteX="49dp"
-            tools:layout_editor_absoluteY="262dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.408" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/TVorphanage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="orphange"
@@ -66,7 +70,7 @@
             app:layout_constraintVertical_bias="0.316" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/orphanage_nameTV"
             android:layout_width="164dp"
             android:layout_height="30dp"
             android:text="orphanage_name"
@@ -80,7 +84,7 @@
             app:layout_constraintVertical_bias="0.179" />
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/usernameTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="username"
@@ -92,7 +96,7 @@
             app:layout_constraintVertical_bias="0.217" />
 
         <Button
-            android:id="@+id/button10"
+            android:id="@+id/editProfileButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#ffffff"
@@ -106,7 +110,7 @@
             app:layout_constraintVertical_bias="0.259" />
 
         <Button
-            android:id="@+id/button11"
+            android:id="@+id/sendMessageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#9eb8ff"
@@ -135,7 +139,7 @@
             app:layout_constraintVertical_bias="0.831" />
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/profilePic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
