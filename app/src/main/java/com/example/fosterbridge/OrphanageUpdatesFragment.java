@@ -164,4 +164,12 @@ public class OrphanageUpdatesFragment extends Fragment {
                     Toast.makeText(getContext(), "Failed to load updates. Please try again.", Toast.LENGTH_SHORT).show();
                 });
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (getActivity() instanceof MainActivity) {
+            MainActivity mainActivity = (MainActivity) getActivity();
+            mainActivity.showUpButton();  // Ensure up button is shown
+        }
+    }
 }
