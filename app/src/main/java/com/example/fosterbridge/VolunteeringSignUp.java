@@ -22,11 +22,13 @@ public class VolunteeringSignUp extends Fragment {
     private static final String ARG_EVENT_DESCRIPTION = "event_description";
     private static final String ARG_DATE = "date";
     private static final String ARG_EVENT_ID = "event_id";
+    private static final String ARG_ORPHANAGE_NAME = "orphanage_name";
 
     private String eventId;
     private String eventName;
     private String eventDescription;
     private String eventDate;
+    private String orphanageName;
 
     private FirebaseFirestore db;
 
@@ -34,16 +36,18 @@ public class VolunteeringSignUp extends Fragment {
         // Required empty constructor
     }
 
-    public static VolunteeringSignUp newInstance(String eventName, String eventDescription, String eventDate, String eventId) {
+    public static VolunteeringSignUp newInstance(String eventName, String eventDescription, String eventDate, String eventId, String orphanageName) {
         VolunteeringSignUp fragment = new VolunteeringSignUp();
         Bundle args = new Bundle();
         args.putString(ARG_EVENT_NAME, eventName);
         args.putString(ARG_EVENT_DESCRIPTION, eventDescription);
         args.putString(ARG_EVENT_ID, eventId);
         args.putString(ARG_DATE, eventDate);
+        args.putString(ARG_ORPHANAGE_NAME, orphanageName); // Add orphanage name to the arguments
         fragment.setArguments(args);
         return fragment;
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,7 @@ public class VolunteeringSignUp extends Fragment {
             eventDescription = getArguments().getString(ARG_EVENT_DESCRIPTION);
             eventDate = getArguments().getString(ARG_DATE);
             eventId = getArguments().getString(ARG_EVENT_ID);
+            orphanageName = getArguments().getString(ARG_ORPHANAGE_NAME); // Fetch orphanage name
         }
 
         // Initialize Firestore
@@ -66,11 +71,13 @@ public class VolunteeringSignUp extends Fragment {
         TextView eventNameTextView = view.findViewById(R.id.event_name);
         TextView eventDescriptionTextView = view.findViewById(R.id.event_description);
         TextView eventDateTextView = view.findViewById(R.id.date);
+        TextView orphanageNameTextView = view.findViewById(R.id.orphanage_name);
         Button volunteerSignUpButton = view.findViewById(R.id.button_signup);
 
         eventNameTextView.setText(eventName);
         eventDescriptionTextView.setText(eventDescription);
         eventDateTextView.setText(eventDate);
+        orphanageNameTextView.setText(orphanageName);
 
         // Handle volunteer sign-up button click
         volunteerSignUpButton.setOnClickListener(v -> storeVolunteerData());
@@ -112,6 +119,7 @@ public class VolunteeringSignUp extends Fragment {
 
                                         // Create volunteer data and include event_date
                                         Map<String, Object> volunteerData = new HashMap<>();
+                                        volunteerData.put("username", orphanageName);
                                         volunteerData.put("event_id", eventId);
                                         volunteerData.put("username", username);
                                         volunteerData.put("event_date", eventDate);  // Store event_date in the volunteer data

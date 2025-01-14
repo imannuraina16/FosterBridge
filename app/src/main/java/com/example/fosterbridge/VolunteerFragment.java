@@ -99,7 +99,8 @@ public class VolunteerFragment extends Fragment {
                 event.getEvent_name(),
                 event.getEvent_description(),
                 event.getDate(),
-                event.getEvent_id()// Pass the event_id
+                event.getEvent_id(),
+                event.getOrphanage_name() // Pass orphanage name here
         );
 
         FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
@@ -107,5 +108,6 @@ public class VolunteerFragment extends Fragment {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
 
 }
