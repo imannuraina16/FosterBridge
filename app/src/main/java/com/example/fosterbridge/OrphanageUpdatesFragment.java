@@ -141,9 +141,14 @@ public class OrphanageUpdatesFragment extends Fragment {
         loadUpdates();
     }
 
-    // Method to load updates from Firestore and display in the RecyclerView
     private void loadUpdates() {
-        updatesCollection.get()
+        // Retrieve the username from SharedPreferences
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserSessionPrefs", Context.MODE_PRIVATE);
+        String loggedInUsername = sharedPreferences.getString("username", "Anonymous");
+
+        // Filter the query to only get updates that belong to the logged-in user
+        updatesCollection.whereEqualTo("username", loggedInUsername)
+                .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     if (!queryDocumentSnapshots.isEmpty()) {
                         List<Update> updatesList = new ArrayList<>();
@@ -157,13 +162,14 @@ public class OrphanageUpdatesFragment extends Fragment {
                         }
                         updatesAdapter.setUpdatesList(updatesList);
                     } else {
-                        Toast.makeText(getContext(), "No updates found.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "No updates found for this user.", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(getContext(), "Failed to load updates. Please try again.", Toast.LENGTH_SHORT).show();
                 });
     }
+
     @Override
     public void onResume() {
         super.onResume();

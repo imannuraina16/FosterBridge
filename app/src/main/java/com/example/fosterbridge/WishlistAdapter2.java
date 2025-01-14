@@ -36,7 +36,7 @@ public class WishlistAdapter2 extends RecyclerView.Adapter<WishlistAdapter2.Wish
     @Override
     public WishlistViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // Inflate the layout for each item (wishlist_item.xml)
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.wishlist_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.wishlist_item2, parent, false);
         return new WishlistViewHolder(view);
     }
 

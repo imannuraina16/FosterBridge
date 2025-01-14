@@ -59,14 +59,15 @@ public class VolunteerFragment extends Fragment {
                 for (DocumentChange dc : value.getDocumentChanges()) {
                     if (dc.getType() == DocumentChange.Type.ADDED) {
                         Event event = dc.getDocument().toObject(Event.class);
+                        Log.d("Firestore Event", "Fetched Event: " + event.getEvent_name());
 
-                        // Fetch orphanage name using orphanage_id
                         fetchOrphanageDetails(event);
                     }
                 }
             }
         });
     }
+
 
     private void fetchOrphanageDetails(Event event) {
         db.collection("orphanage").document(event.getUsername()).get()

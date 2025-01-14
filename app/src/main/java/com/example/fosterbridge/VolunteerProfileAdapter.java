@@ -18,7 +18,7 @@ import java.util.List;
 
 public class VolunteerProfileAdapter extends RecyclerView.Adapter<VolunteerProfileAdapter.VolunteerProfileViewHolder> {
     private List<VolunteerProfile> volunteerProfileList;
-    private Context context;  // Added context to make toast messages more flexible
+    private Context context;
 
     public VolunteerProfileAdapter(Context context) {
         this.volunteerProfileList = new ArrayList<>();
@@ -28,7 +28,7 @@ public class VolunteerProfileAdapter extends RecyclerView.Adapter<VolunteerProfi
     // Set the list of volunteer profiles for the RecyclerView
     public void setVolunteerProfiles(List<VolunteerProfile> volunteerProfileList) {
         this.volunteerProfileList = volunteerProfileList;
-        notifyDataSetChanged();  // Notify adapter that data has changed
+        notifyDataSetChanged();
     }
 
     @Override
@@ -48,17 +48,17 @@ public class VolunteerProfileAdapter extends RecyclerView.Adapter<VolunteerProfi
         holder.descriptionTextView.setText(volunteerProfile.getEvent_description());
 
         // Set the delete button click listener
-        holder.deleteButton.setOnClickListener(v -> deleteVolunteerProfile(volunteerProfile, position, holder));
+        holder.deleteButton.setOnClickListener(v -> deleteVolunteerProfile(volunteerProfile, position));
     }
 
     // Method to delete a volunteer profile
-    private void deleteVolunteerProfile(VolunteerProfile volunteerProfile, int position, VolunteerProfileViewHolder holder) {
+    private void deleteVolunteerProfile(VolunteerProfile volunteerProfile, int position) {
         if (volunteerProfile.getId() == null) {
             Toast.makeText(context, "Error: Volunteer profile ID is null.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Get the Firestore document reference for the volunteer profile
+        // Get the Firestore document reference for the volunteer profile using the document ID
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference volunteerProfileDocRef = db.collection("events").document(volunteerProfile.getId());
 
@@ -90,8 +90,8 @@ public class VolunteerProfileAdapter extends RecyclerView.Adapter<VolunteerProfi
 
     // Method to add a new volunteer profile at the end of the list
     public void addVolunteerProfile(VolunteerProfile newVolunteerProfile) {
-        volunteerProfileList.add(newVolunteerProfile);  // Insert the new profile at the end of the list
-        notifyItemInserted(volunteerProfileList.size() - 1);  // Notify the adapter that a new item was inserted at the last position
+        volunteerProfileList.add(newVolunteerProfile);
+        notifyItemInserted(volunteerProfileList.size() - 1);
     }
 
     // ViewHolder class for the Volunteer profile item

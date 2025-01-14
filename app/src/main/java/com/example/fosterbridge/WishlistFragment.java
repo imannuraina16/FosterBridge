@@ -141,9 +141,14 @@ public class WishlistFragment extends Fragment {
         loadWishlistItems();
     }
 
-    // Method to load wishlist items from Firestore and display in the RecyclerView
     private void loadWishlistItems() {
-        wishlistCollection.get()
+        // Retrieve the username from SharedPreferences
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserSessionPrefs", Context.MODE_PRIVATE);
+        String loggedInUsername = sharedPreferences.getString("username", "Anonymous");
+
+        // Filter the query to only get items that belong to the logged-in user
+        wishlistCollection.whereEqualTo("username", loggedInUsername)
+                .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     if (!queryDocumentSnapshots.isEmpty()) {
                         List<WishlistItem> wishlistItems = new ArrayList<>();
@@ -157,13 +162,14 @@ public class WishlistFragment extends Fragment {
                         }
                         wishlistAdapter.setWishlistItems(wishlistItems);
                     } else {
-                        Toast.makeText(getContext(), "No wishlist items found.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "No wishlist items found for this user.", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(getContext(), "Failed to load wishlist items. Please try again.", Toast.LENGTH_SHORT).show();
                 });
     }
+
     @Override
     public void onResume() {
         super.onResume();
