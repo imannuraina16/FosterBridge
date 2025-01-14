@@ -62,8 +62,8 @@ public class Payment extends Fragment {
                 } else {
                     Toast.makeText(getContext(), "Invalid card details", Toast.LENGTH_SHORT).show();
                 }
-                navigateToDonationHistory();
             }
+
         });
 
         return view;
@@ -114,7 +114,9 @@ public class Payment extends Fragment {
                         // Handle failure in fetching the donation count
                         Toast.makeText(getContext(), "Error fetching donation count: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
+                    navigateToDonationHistory();
                 });
+
     }
 
     private void navigateToDonationHistory(){
@@ -124,5 +126,13 @@ public class Payment extends Fragment {
         transaction.addToBackStack(null);
         title.setText("Donation History");
         transaction.commit();
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (getActivity() instanceof MainActivity) {
+            MainActivity mainActivity = (MainActivity) getActivity();
+            mainActivity.showUpButton();  // Ensure up button is shown
+        }
     }
 }

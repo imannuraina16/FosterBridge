@@ -69,7 +69,6 @@ public class DonationHistory extends Fragment {
 
         return rootView;
     }
-
     private void loadDonationHistory() {
         db.collection("donations")
                 .whereEqualTo("username", loggedInUsername)  // Ensure the username matches the logged-in user
@@ -99,7 +98,6 @@ public class DonationHistory extends Fragment {
                                     totalDonation += amount;
                                 } catch (NumberFormatException e) {
                                     Log.e(TAG, "Invalid amount format for donation", e);
-                                    // Handle the error: You may choose to skip the donation or set it to 0
                                 }
                             } else {
                                 Log.w(TAG, "Amount is null or empty for donation ID: " + donation.getId());
@@ -108,6 +106,14 @@ public class DonationHistory extends Fragment {
                             // Add donation to the list
                             donationList.add(donation);
                         }
+
+                        // Sort the donations list by timestamp (descending order)
+                        donationList.sort((d1, d2) -> {
+                            if (d1.getTimestamp() == null || d2.getTimestamp() == null) {
+                                return 0; // Handle null timestamps gracefully
+                            }
+                            return d2.getTimestamp().compareTo(d1.getTimestamp()); // Descending order
+                        });
 
                         // Update the RecyclerView and Total Donation TextView
                         adapter.setDonations(donationList);
@@ -120,6 +126,14 @@ public class DonationHistory extends Fragment {
                     Log.e(TAG, "Error fetching donation history", e);
                     Toast.makeText(requireContext(), "Failed to load donation history.", Toast.LENGTH_SHORT).show();
                 });
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (getActivity() instanceof MainActivity) {
+            MainActivity mainActivity = (MainActivity) getActivity();
+            mainActivity.showUpButton();  // Ensure up button is shown
+        }
     }
 
 }

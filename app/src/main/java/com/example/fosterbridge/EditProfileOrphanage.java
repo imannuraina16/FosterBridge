@@ -41,10 +41,9 @@ public class EditProfileOrphanage extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_edit_profile_orphanage, container, false);
 
-        // Initialize TextViews and EditTexts
+        // Initialize views
         usernameTextView = view.findViewById(R.id.username);
         userTypeTextView = view.findViewById(R.id.userType);
         inputUsername = view.findViewById(R.id.inputUsername);
@@ -59,23 +58,21 @@ public class EditProfileOrphanage extends Fragment {
         // Initialize Firestore
         db = FirebaseFirestore.getInstance();
 
-        // Retrieve SharedPreferences
-        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("UserSessionPrefs", Context.MODE_PRIVATE);
-
         // Get username and userType from SharedPreferences
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("UserSessionPrefs", Context.MODE_PRIVATE);
         String username = sharedPreferences.getString("username", "No username");
         String userType = sharedPreferences.getString("userType", "Orphanage");
 
         // Set username and userType
         usernameTextView.setText(username);
         userTypeTextView.setText(userType);
+        inputUsername.setText(username); // Set username but leave it non-editable
 
         // Fetch data from Firestore
         db.collection("orphanage").document(username).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
                 if (document != null && document.exists()) {
-                    inputUsername.setText(username);
                     inputName.setText(document.getString("name"));
                     inputContact.setText(document.getString("contact_info"));
                     inputEmail.setText(document.getString("email"));
@@ -92,9 +89,9 @@ public class EditProfileOrphanage extends Fragment {
         return view;
     }
 
-    private void saveProfileData(String oldUsername) {
+
+    private void saveProfileData(String username) {
         // Retrieve updated data from the EditTexts
-        String updatedUsername = inputUsername.getText().toString().trim();  // Edited username
         String updatedName = inputName.getText().toString().trim();
         String updatedContact = inputContact.getText().toString().trim();
         String updatedEmail = inputEmail.getText().toString().trim();
@@ -103,64 +100,32 @@ public class EditProfileOrphanage extends Fragment {
         String updatedRegNum = inputRegNum.getText().toString().trim();
 
         // Validate input fields
-        if (updatedUsername.isEmpty() || updatedName.isEmpty() || updatedContact.isEmpty() || updatedEmail.isEmpty() ||
+        if (updatedName.isEmpty() || updatedContact.isEmpty() || updatedEmail.isEmpty() ||
                 updatedAddress.isEmpty() || updatedPassword.isEmpty() || updatedRegNum.isEmpty()) {
             Toast.makeText(getActivity(), "All fields must be filled.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Check if the updated username already exists in Firestore (for orphanages)
-        db.collection("orphanage").document(updatedUsername).get()
-                .addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists()) {
-                        // Username already exists, show a Toast message and prevent the update
-                        Toast.makeText(getActivity(), "Username already exists. Please choose a different one.", Toast.LENGTH_SHORT).show();
-                    } else {
-                        // Prepare the data to be saved in Firestore
-                        Map<String, Object> orphanageProfile = new HashMap<>();
-                        orphanageProfile.put("name", updatedName);
-                        orphanageProfile.put("contact_info", updatedContact);
-                        orphanageProfile.put("email", updatedEmail);
-                        orphanageProfile.put("location", updatedAddress);
-                        orphanageProfile.put("password", updatedPassword);
-                        orphanageProfile.put("registration_number", updatedRegNum);
+        // Prepare the data to be saved in Firestore
+        Map<String, Object> orphanageProfile = new HashMap<>();
+        orphanageProfile.put("name", updatedName);
+        orphanageProfile.put("contact_info", updatedContact);
+        orphanageProfile.put("email", updatedEmail);
+        orphanageProfile.put("location", updatedAddress);
+        orphanageProfile.put("password", updatedPassword);
+        orphanageProfile.put("registration_number", updatedRegNum);
 
-                        // Retrieve old data and set new username
-                        db.collection("orphanage").document(oldUsername).get()
-                                .addOnSuccessListener(docSnapshot -> {
-                                    if (docSnapshot.exists()) {
-                                        // Move data to new document with updated username
-                                        db.collection("orphanage").document(updatedUsername)
-                                                .set(orphanageProfile)
-                                                .addOnSuccessListener(aVoid -> {
-                                                    // Data has been successfully copied to the new document
-                                                    // Now delete the old document
-                                                    deleteOldDocument(oldUsername);
-
-                                                    // Update SharedPreferences with the new username
-                                                    SharedPreferences.Editor editor = requireActivity().getSharedPreferences("UserSessionPrefs", Context.MODE_PRIVATE).edit();
-                                                    editor.putString("username", updatedUsername);  // Update the stored username
-                                                    editor.apply();
-
-                                                    Toast.makeText(getActivity(), "Profile has been updated successfully.", Toast.LENGTH_SHORT).show();
-                                                })
-                                                .addOnFailureListener(e -> {
-                                                    // Handle failure in saving data to new document
-                                                    Toast.makeText(getActivity(), "Failed to update profile. Please try again.", Toast.LENGTH_SHORT).show();
-                                                });
-                                    }
-                                })
-                                .addOnFailureListener(e -> {
-                                    // Handle failure in retrieving the old document
-                                    Toast.makeText(getActivity(), "Failed to fetch old data. Please try again.", Toast.LENGTH_SHORT).show();
-                                });
-                    }
+        // Update the existing document in Firestore
+        db.collection("orphanage").document(username)
+                .set(orphanageProfile)
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(getActivity(), "Profile updated successfully.", Toast.LENGTH_SHORT).show();
                 })
                 .addOnFailureListener(e -> {
-                    // Handle failure in checking if the username exists
-                    Toast.makeText(getActivity(), "Failed to check username. Please try again.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Failed to update profile. Please try again.", Toast.LENGTH_SHORT).show();
                 });
     }
+
 
     private void deleteOldDocument(String oldUsername) {
         db.collection("orphanage").document(oldUsername)

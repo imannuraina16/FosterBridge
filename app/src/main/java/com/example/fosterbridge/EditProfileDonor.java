@@ -3,6 +3,7 @@ package com.example.fosterbridge;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +14,13 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class EditProfileDonor extends Fragment {
 
-    private EditText inputUsername, inputName, inputEmail, inputPassword, inputGender, inputAge, inputContact, inputBirthDate;
+    private EditText inputName, inputUsername, inputEmail, inputPassword, inputGender, inputAge, inputContact, inputBirthDate;
     private TextView usernameTextView;
     private Button saveButton;
     private FirebaseFirestore db;
@@ -40,33 +40,42 @@ public class EditProfileDonor extends Fragment {
         db = FirebaseFirestore.getInstance();
 
         // Initialize SharedPreferences to retrieve user session data
-        prefs = getActivity().getSharedPreferences("UserSessionPrefs", getActivity().MODE_PRIVATE);
+        prefs = requireActivity().getSharedPreferences("UserSessionPrefs", Context.MODE_PRIVATE);
 
-        // Retrieve username from SharedPreferences (email and password will be fetched from Firestore)
-        String username = prefs.getString("username", "No username");
+        // Retrieve username from SharedPreferences
+        String username = prefs.getString("username", null);
 
         // Bind views
         usernameTextView = rootView.findViewById(R.id.username);
-        inputUsername = rootView.findViewById(R.id.inputUsername);
         inputName = rootView.findViewById(R.id.inputName);
         inputEmail = rootView.findViewById(R.id.inputEmail);
         inputPassword = rootView.findViewById(R.id.inputPassword);
         inputGender = rootView.findViewById(R.id.inputGender);
+        inputUsername = rootView.findViewById(R.id.inputUsername);
         inputAge = rootView.findViewById(R.id.inputAge);
         inputContact = rootView.findViewById(R.id.inputContact);
         inputBirthDate = rootView.findViewById(R.id.inputBirthDate);
         saveButton = rootView.findViewById(R.id.saveButton);
 
-        // Display username in the textView and input field
-        usernameTextView.setText("@"+username);
-        inputUsername.setText(username);
+        if (username != null) {
+            // Display username in the TextView
+            usernameTextView.setText("@" + username);
 
-        // Fetch user profile data from Firestore
-        fetchUserProfileData(username);
+            // Fetch user profile data from Firestore
+            fetchUserProfileData(username);
+        } else {
+            // Handle case where username is not available
+            usernameTextView.setText("No username available");
+            Toast.makeText(getActivity(), "User session not found.", Toast.LENGTH_SHORT).show();
+        }
 
         // Set up save button to save the updated data to Firestore
         saveButton.setOnClickListener(v -> {
-            saveProfileData();
+            if (username != null) {
+                saveProfileData(username);
+            } else {
+                Toast.makeText(getActivity(), "Unable to save profile. User session not found.", Toast.LENGTH_SHORT).show();
+            }
         });
 
         return rootView;
@@ -78,35 +87,27 @@ public class EditProfileDonor extends Fragment {
                 .get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
-                        // Retrieve email, password, and other profile data from Firestore
-                        String userEmail = documentSnapshot.getString("email");
-                        String userPassword = documentSnapshot.getString("password");
-                        String userName = documentSnapshot.getString("name");
-                        String userGender = documentSnapshot.getString("gender");
-                        String userAge = documentSnapshot.getString("age");
-                        String userContact = documentSnapshot.getString("contact");
-                        String userBirthDate = documentSnapshot.getString("birthDate");
-
-                        // Display the retrieved data in the input fields
-                        inputName.setText(userName);
-                        inputEmail.setText(userEmail);
-                        inputPassword.setText(userPassword);
-                        inputGender.setText(userGender);
-                        inputAge.setText(userAge);
-                        inputContact.setText(userContact);
-                        inputBirthDate.setText(userBirthDate);
+                        // Retrieve and display user profile data
+                        inputUsername.setText(documentSnapshot.getString("username"));
+                        inputName.setText(documentSnapshot.getString("name"));
+                        inputEmail.setText(documentSnapshot.getString("email"));
+                        inputPassword.setText(documentSnapshot.getString("password"));
+                        inputGender.setText(documentSnapshot.getString("gender"));
+                        inputAge.setText(documentSnapshot.getString("age"));
+                        inputContact.setText(documentSnapshot.getString("contact"));
+                        inputBirthDate.setText(documentSnapshot.getString("birthDate"));
                     } else {
-                        // Handle case where the document doesn't exist
+                        Toast.makeText(getActivity(), "User profile not found.", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(e -> {
-                    // Handle failure (e.g., show an error message)
+                    Log.e("EditProfileDonor", "Error fetching profile: ", e);
+                    Toast.makeText(getActivity(), "Failed to fetch user profile. Please try again.", Toast.LENGTH_SHORT).show();
                 });
     }
 
-    private void saveProfileData() {
+    private void saveProfileData(String username) {
         // Retrieve updated data from the EditTexts
-        String updatedUsername = inputUsername.getText().toString();  // Edited username
         String updatedName = inputName.getText().toString();
         String updatedEmail = inputEmail.getText().toString();
         String updatedPassword = inputPassword.getText().toString();
@@ -114,6 +115,14 @@ public class EditProfileDonor extends Fragment {
         String updatedAge = inputAge.getText().toString();
         String updatedContact = inputContact.getText().toString();
         String updatedBirthDate = inputBirthDate.getText().toString();
+
+        // Validate input fields
+        if (updatedName.isEmpty() || updatedEmail.isEmpty() || updatedPassword.isEmpty() ||
+                updatedGender.isEmpty() || updatedAge.isEmpty() || updatedContact.isEmpty() ||
+                updatedBirthDate.isEmpty()) {
+            Toast.makeText(getActivity(), "All fields must be filled.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         // Prepare the data to be saved in Firestore
         Map<String, Object> userProfile = new HashMap<>();
@@ -125,79 +134,23 @@ public class EditProfileDonor extends Fragment {
         userProfile.put("contact", updatedContact);
         userProfile.put("birthDate", updatedBirthDate);
 
-        // Retrieve the old username from SharedPreferences
-        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("UserSessionPrefs", Context.MODE_PRIVATE);
-        String oldUsername = sharedPreferences.getString("username", "No username");
-
-        // Check if the updated username already exists in the database
-        db.collection("users").document(updatedUsername).get()
-                .addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists()) {
-                        // Username already exists, show a Toast message and don't allow the profile update
-                        Toast.makeText(getActivity(), "Username already exists. Please choose a different one.", Toast.LENGTH_SHORT).show();
-                    } else {
-                        // If the username has changed, perform the rename operation
-                        if (!updatedUsername.equals(oldUsername)) {
-                            // Fetch data from the old document and then save it under the new username
-                            db.collection("users").document(oldUsername).get()
-                                    .addOnSuccessListener(doc -> {
-                                        if (doc.exists()) {
-                                            // Move the data to the new username (create a new document)
-                                            db.collection("users").document(updatedUsername)
-                                                    .set(userProfile)
-                                                    .addOnSuccessListener(aVoid -> {
-                                                        // Data saved successfully, now delete the old document
-                                                        deleteOldDocument(oldUsername);
-
-                                                        // Update SharedPreferences with the new username
-                                                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                                                        editor.putString("username", updatedUsername);
-                                                        editor.apply();
-
-                                                        Toast.makeText(getActivity(), "Profile has been updated successfully.", Toast.LENGTH_SHORT).show();
-                                                    })
-                                                    .addOnFailureListener(e -> {
-                                                        // Handle failure in saving data to new document
-                                                        Toast.makeText(getActivity(), "Failed to update profile. Please try again.", Toast.LENGTH_SHORT).show();
-                                                    });
-                                        }
-                                    })
-                                    .addOnFailureListener(e -> {
-                                        // Handle failure in retrieving the old document
-                                        Toast.makeText(getActivity(), "Failed to fetch old data. Please try again.", Toast.LENGTH_SHORT).show();
-                                    });
-                        } else {
-                            // If the username hasn't changed, just update the document with the current username
-                            db.collection("users").document(updatedUsername)
-                                    .set(userProfile)
-                                    .addOnSuccessListener(aVoid -> {
-                                        // Data saved successfully
-                                        Toast.makeText(getActivity(), "Profile has been updated successfully.", Toast.LENGTH_SHORT).show();
-                                    })
-                                    .addOnFailureListener(e -> {
-                                        // Handle failure
-                                        Toast.makeText(getActivity(), "Failed to update profile. Please try again.", Toast.LENGTH_SHORT).show();
-                                    });
-                        }
-                    }
-                })
-                .addOnFailureListener(e -> {
-                    // Handle failure to check for existing username
-                    Toast.makeText(getActivity(), "Failed to check username. Please try again.", Toast.LENGTH_SHORT).show();
-                });
-    }
-
-    private void deleteOldDocument(String oldUsername) {
-        db.collection("users").document(oldUsername)
-                .delete()
+        // Update user profile in Firestore
+        db.collection("users").document(username)
+                .set(userProfile)
                 .addOnSuccessListener(aVoid -> {
-                    // Old document deleted successfully
+                    Toast.makeText(getActivity(), "Profile has been updated successfully.", Toast.LENGTH_SHORT).show();
                 })
                 .addOnFailureListener(e -> {
-                    // Handle failure to delete old document
-                    Toast.makeText(getActivity(), "Failed to delete old profile. Please try again.", Toast.LENGTH_SHORT).show();
+                    Log.e("EditProfileDonor", "Error saving profile: ", e);
+                    Toast.makeText(getActivity(), "Failed to update profile. Please try again.", Toast.LENGTH_SHORT).show();
                 });
     }
-
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (getActivity() instanceof MainActivity) {
+            MainActivity mainActivity = (MainActivity) getActivity();
+            mainActivity.showUpButton();  // Ensure up button is shown
+        }
+    }
 }

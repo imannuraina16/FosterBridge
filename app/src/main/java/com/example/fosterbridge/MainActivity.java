@@ -123,12 +123,23 @@ public class MainActivity extends AppCompatActivity {
         return prefs.contains("username");  // If the username is stored, the user is logged in
     }
 
-    private void replaceFragment(Fragment fragment){
+    private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout,fragment);
+        fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
+
+        // Show or hide up button based on the fragment type
+        if (fragment instanceof Home || fragment instanceof Contribute) {
+            hideUpButton();  // Home and Contribute fragments do not need the up button
+        } else if (fragment instanceof AboutUs){
+            showUpButton();  // Show the up button for other fragments
+        }
+        else {
+            showUpButton();
+        }
     }
+
 
     public void hideUpButton() {
         // Hide up button in specific fragments/screens

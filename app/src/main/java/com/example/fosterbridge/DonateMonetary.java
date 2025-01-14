@@ -154,6 +154,7 @@ public class DonateMonetary extends Fragment {
                 // Replace current fragment with the Payment fragment
                 FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.frame_layout, paymentFragment);
+                fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
         });
@@ -161,4 +162,12 @@ public class DonateMonetary extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (getActivity() instanceof MainActivity) {
+            MainActivity mainActivity = (MainActivity) getActivity();
+            mainActivity.showUpButton();  // Ensure up button is shown
+        }
+    }
 }

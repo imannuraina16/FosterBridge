@@ -117,4 +117,12 @@ public class ProfileOrphanage extends Fragment {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (getActivity() instanceof MainActivity) {
+            MainActivity mainActivity = (MainActivity) getActivity();
+            mainActivity.hideUpButton();  // Ensure up button is shown
+        }
+    }
 }

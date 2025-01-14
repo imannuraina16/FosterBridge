@@ -69,6 +69,7 @@ public class Home extends Fragment{
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.frame_layout, new AboutUs());
+                fragmentTransaction.addToBackStack(null);
                 title.setText("About Us");
                 fragmentTransaction.commit();
 

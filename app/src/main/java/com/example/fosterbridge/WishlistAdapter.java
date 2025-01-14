@@ -59,15 +59,18 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.Wishli
         // Delete the wishlist item from Firestore
         wishlistItemDocRef.delete()
                 .addOnSuccessListener(aVoid -> {
-                    // Remove the wishlist item from the local list at the correct position
-                    wishlistItems.remove(position);  // Remove the item from the local list
+                    // Remove the wishlist item from the local list
+                    wishlistItems.remove(position);
 
                     // Notify the adapter about the removal
-                    notifyItemRemoved(position);   // Notify the adapter that the item has been removed
+                    notifyItemRemoved(position);
 
                     // Check if the list is empty and show a message
                     if (wishlistItems.isEmpty()) {
-                        Toast.makeText(holder.itemView.getContext(), "No wishlist items available.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(holder.itemView.getContext(), "Wishlist is now empty.", Toast.LENGTH_SHORT).show();
+                        // Optionally, show a placeholder message or update the UI
+                        // For example:
+                        // showEmptyState();
                     } else {
                         Toast.makeText(holder.itemView.getContext(), "Wishlist item deleted successfully.", Toast.LENGTH_SHORT).show();
                     }
@@ -76,6 +79,7 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.Wishli
                     Toast.makeText(holder.itemView.getContext(), "Failed to delete wishlist item.", Toast.LENGTH_SHORT).show();
                 });
     }
+
 
     @Override
     public int getItemCount() {

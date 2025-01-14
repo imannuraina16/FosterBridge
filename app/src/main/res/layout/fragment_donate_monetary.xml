@@ -249,7 +249,7 @@
                 android:ems="10"
                 android:fontFamily="sans-serif-black"
                 android:inputType="text"
-                android:text="0"
+                android:hint="0"
                 android:textAlignment="center"
                 android:textSize="26dp"
                 app:layout_constraintEnd_toEndOf="parent"
